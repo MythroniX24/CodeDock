@@ -46,17 +46,34 @@ class ToolManager {
 
   async isToolInstalled(id) {
     const state = this.config.getToolState(id);
-    if (!state.installed) return false;
-    return await this.verifyTool(id);
+    const verified = await this.verifyTool(id);
+    
+    // Auto-detect externally installed tools
+    if (verified && !state.installed) {
+      this.config.setToolState(id, {
+        installed: true,
+        installedAt: new Date().toISOString(),
+        proot: false
+      });
+      return true;
+    }
+    
+    // Auto-fix state if tool was uninstalled externally
+    if (!verified && state.installed) {
+      this.config.setToolState(id, { installed: false, installedAt: null });
+      return false;
+    }
+    
+    return verified;
   }
 
   async getStatus(id) {
+    const isInstalled = await this.isToolInstalled(id);
     const state = this.config.getToolState(id);
-    const verified = await this.verifyTool(id);
     return {
-      installed: !!state.installed && verified,
+      installed: isInstalled,
       installedAt: state.installedAt || null,
-      verified,
+      verified: isInstalled,
     };
   }
 
