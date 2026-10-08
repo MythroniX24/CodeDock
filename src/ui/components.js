@@ -5,15 +5,14 @@ const Config = require('../core/config');
 // Components
 function banner() {
   const pkg = require('../../package.json');
-  console.log(chalk.blue.bold(`
-  ██████╗ ██████╗ ██████╗ ███████╗██████╗  ██████╗  ██████╗███╗   ██╗
- ██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔══██╗██╔═══██╗██╔════╝████╗  ██║
- ██║     ██║   ██║██║  ██║█████╗  ██║  ██║██║   ██║██║     ██╔██╗ ██║
- ██║     ██║   ██║██║  ██║██╔══╝  ██║  ██║██║   ██║██║     ██║╚██╗██║
- ╚██████╗╚██████╔╝██████╔╝███████╗██████╔╝╚██████╔╝╚██████╗██║ ╚████║
-  ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═══╝
-  `));
-  console.log(chalk.gray(`  Termux Coding Tools Manager v${pkg.version || '1.0.0'}\n`));
+  const v = pkg.version || '1.0.0';
+  
+  console.log('');
+  console.log(chalk.cyan('  ╭────────────────────────────────────╮'));
+  console.log(chalk.cyan('  │') + '  ' + chalk.blue.bold('C O D E D O C K') + ' '.repeat(16 - v.length) + chalk.gray('v' + v) + '  ' + chalk.cyan('│'));
+  console.log(chalk.cyan('  │') + '  ' + chalk.white('Termux Coding Tools Manager') + ' '.repeat(7) + chalk.cyan('│'));
+  console.log(chalk.cyan('  ╰────────────────────────────────────╯'));
+  console.log('');
 }
 
 function toolStatusLine(tool, isInstalled) {
