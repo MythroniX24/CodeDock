@@ -229,6 +229,8 @@ class ToolManager {
     logger.blank();
 
     const sysInfo = getSystemInfo();
+    const isWin = sysInfo.os === 'win32';
+
     if (this._needsProot(tool, sysInfo)) {
       // Build the full command line
       const fullArgs = args.map(a => `"${a}"`).join(' ');
@@ -251,6 +253,7 @@ class ToolManager {
         cwd,
         stdio: 'inherit',
         env: process.env,
+        shell: isWin
       });
 
       if (result.error) {

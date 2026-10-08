@@ -2,19 +2,13 @@
 
 /**
  * @file src/core/environment.js
- * Termux environment detection and system info.
- *
- * Exports both standalone functions and a class-based API for flexibility.
+ * Cross-platform environment detection and system info.
  */
 const os = require('os');
 const path = require('path');
 const fs = require('fs');
 const { execSync } = require('child_process');
 
-/**
- * Check whether we are running inside a Termux environment.
- * @returns {boolean}
- */
 function isTermux() {
   return (
     process.env.PREFIX !== undefined ||
@@ -23,12 +17,7 @@ function isTermux() {
   );
 }
 
-/**
- * Detect the device architecture and return a canonical name.
- * @returns {string} One of: aarch64, armv7l, x86_64, i686, or the raw arch string.
- */
 function getArchitecture() {
-  // Prefer uname -m for the real hardware arch
   try {
     const uname = execSync('uname -m', { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
     if (uname) return uname;
@@ -39,39 +28,43 @@ function getArchitecture() {
   return map[arch] || arch;
 }
 
-/**
- * @returns {string} The Termux $PREFIX directory.
- */
 function getPrefix() {
-  return process.env.PREFIX || '/data/data/com.termux/files/usr';
+  if (isTermux()) return process.env.PREFIX || '/data/data/com.termux/files/usr';
+  return process.env.PREFIX || '/usr/local';
 }
 
-/**
- * @returns {string} The user home directory.
- */
 function getHome() {
-  return process.env.HOME || '/data/data/com.termux/files/home';
+  if (isTermux()) return process.env.HOME || '/data/data/com.termux/files/home';
+  return os.homedir();
 }
 
-/**
- * @returns {string} Current shell path.
- */
 function getShell() {
-  return process.env.SHELL || '/system/bin/sh';
+  if (os.platform() === 'win32') return process.env.COMSPEC || 'cmd.exe';
+  return process.env.SHELL || '/bin/bash';
 }
 
-/**
- * @returns {string} Package manager command ('pkg' in Termux, 'apt' otherwise).
- */
 function getPackageManager() {
   if (isTermux()) return 'pkg';
-  return 'apt';
+  
+  if (os.platform() === 'win32') {
+    try { execSync('winget --version', { stdio: 'ignore' }); return 'winget'; } catch(_) {}
+    try { execSync('choco --version', { stdio: 'ignore' }); return 'choco'; } catch(_) {}
+    return 'npm'; // fallback
+  }
+  
+  if (os.platform() === 'darwin') {
+    try { execSync('brew --version', { stdio: 'ignore' }); return 'brew'; } catch(_) {}
+    return 'npm';
+  }
+  
+  // Linux
+  try { execSync('command -v apt', { stdio: 'ignore' }); return 'apt'; } catch(_) {}
+  try { execSync('command -v dnf', { stdio: 'ignore' }); return 'dnf'; } catch(_) {}
+  try { execSync('command -v pacman', { stdio: 'ignore' }); return 'pacman'; } catch(_) {}
+  
+  return 'npm'; // Universal fallback
 }
 
-/**
- * Get comprehensive system information.
- * @returns {object}
- */
 function getSystemInfo() {
   return {
     isTermux: isTermux(),
@@ -87,22 +80,16 @@ function getSystemInfo() {
   };
 }
 
-/**
- * Check that $PREFIX/bin is on the PATH.
- * @returns {boolean}
- */
 function checkPath() {
   const prefixBin = path.join(getPrefix(), 'bin');
   const pathEnv = process.env.PATH || '';
   return pathEnv.split(path.delimiter).includes(prefixBin);
 }
 
-/**
- * Check write permissions to key directories.
- * @returns {Object<string, boolean>}
- */
 function checkPermissions() {
-  const dirs = [getHome(), getPrefix()];
+  const dirs = [getHome()];
+  if (os.platform() !== 'win32') dirs.push(getPrefix());
+  
   const results = {};
   for (const dir of dirs) {
     try {
@@ -115,10 +102,6 @@ function checkPermissions() {
   return results;
 }
 
-/**
- * Class-based wrapper around the environment functions.
- * This allows callers to use `new Environment()` style if preferred.
- */
 class Environment {
   isTermux() { return isTermux(); }
   getArchitecture() { return getArchitecture(); }
@@ -130,7 +113,6 @@ class Environment {
   checkPath() { return checkPath(); }
   checkPermissions() { return checkPermissions(); }
 
-  /** Alias used by UI/command modules. Returns same shape as getSystemInfo(). */
   async getInfo() { return getSystemInfo(); }
 }
 

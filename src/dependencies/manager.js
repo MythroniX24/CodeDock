@@ -2,48 +2,98 @@
 
 /**
  * @file src/dependencies/manager.js
- * DependencyManager — detects, installs, and verifies system dependencies.
- *
- * Understands Termux's package ecosystem (pkg) and external package
- * managers (npm, pip, cargo) when required by tool manifests.
+ * DependencyManager — detects, installs, and verifies system dependencies
+ * across Termux, Windows, macOS, and standard Linux.
  */
 const { execSync, spawn } = require('child_process');
+const os = require('os');
 const semver = require('semver');
 const logger = require('../core/logger');
+const { getPackageManager } = require('../core/environment');
 
-/**
- * Map of known dependency names to their detection and installation info.
- * Each entry specifies:
- *   detect  — shell command to detect presence + version
- *   install — Termux pkg install command (empty = comes with another package)
- *   regex   — pattern to extract version from detect output
- */
-const DEP_COMMANDS = {
-  nodejs:             { detect: 'node --version',      install: 'pkg install -y nodejs-lts',    regex: /v?(\d+\.\d+\.\d+)/ },
-  node:               { detect: 'node --version',      install: 'pkg install -y nodejs-lts',    regex: /v?(\d+\.\d+\.\d+)/ },
-  npm:                { detect: 'npm --version',       install: '',                             regex: /(\d+\.\d+\.\d+)/ },
-  python:             { detect: 'python3 --version',   install: 'pkg install -y python',        regex: /Python (\d+\.\d+\.\d+)/ },
-  pip:                { detect: 'pip3 --version',      install: '',                             regex: /pip (\d+\.\d+[\.\d]*)/ },
-  git:                { detect: 'git --version',       install: 'pkg install -y git',           regex: /git version (\d+\.\d+[\.\d]*)/ },
-  curl:               { detect: 'curl --version',      install: 'pkg install -y curl',          regex: /curl (\d+\.\d+[\.\d]*)/ },
-  wget:               { detect: 'wget --version',      install: 'pkg install -y wget',          regex: /GNU Wget (\d+\.\d+[\.\d]*)/ },
-  rust:               { detect: 'rustc --version',     install: 'pkg install -y rust',          regex: /rustc (\d+\.\d+\.\d+)/ },
-  cargo:              { detect: 'cargo --version',     install: '',                             regex: /cargo (\d+\.\d+\.\d+)/ },
-  'build-essential':  { detect: 'make --version',      install: 'pkg install -y build-essential', regex: /GNU Make (\d+[\.\d]*)/ },
-  golang:             { detect: 'go version',          install: 'pkg install -y golang',        regex: /go version go(\d+\.\d+[\.\d]*)/ },
+const DEP_DETECTION = {
+  nodejs: { detect: 'node --version', regex: /v?(\d+\.\d+\.\d+)/ },
+  node: { detect: 'node --version', regex: /v?(\d+\.\d+\.\d+)/ },
+  npm: { detect: 'npm --version', regex: /(\d+\.\d+\.\d+)/ },
+  python: { detect: 'python3 --version', regex: /Python (\d+\.\d+\.\d+)/ },
+  pip: { detect: 'pip3 --version', regex: /pip (\d+\.\d+[\.\d]*)/ },
+  git: { detect: 'git --version', regex: /git version (\d+\.\d+[\.\d]*)/ },
+  curl: { detect: 'curl --version', regex: /curl (\d+\.\d+[\.\d]*)/ },
+  wget: { detect: 'wget --version', regex: /GNU Wget (\d+\.\d+[\.\d]*)/ },
+  rust: { detect: 'rustc --version', regex: /rustc (\d+\.\d+\.\d+)/ },
+  cargo: { detect: 'cargo --version', regex: /cargo (\d+\.\d+\.\d+)/ },
+  golang: { detect: 'go version', regex: /go version go(\d+\.\d+[\.\d]*)/ },
 };
 
 class DependencyManager {
-  /**
-   * Detect whether a dependency is installed and its version.
-   * @param {string} depName
-   * @returns {{ installed: boolean, version: string|null, path: string|null }}
-   */
+  constructor() {
+    this.pkgManager = getPackageManager();
+  }
+
+  getInstallCommand(depName) {
+    const isWin = os.platform() === 'win32';
+    const sudo = (isWin || this.pkgManager === 'pkg' || this.pkgManager === 'brew') ? '' : 'sudo ';
+
+    const commands = {
+      node: {
+        pkg: 'pkg install -y nodejs-lts',
+        apt: `${sudo}apt-get install -y nodejs npm`,
+        brew: 'brew install node',
+        winget: 'winget install OpenJS.NodeJS',
+        choco: 'choco install nodejs'
+      },
+      python: {
+        pkg: 'pkg install -y python',
+        apt: `${sudo}apt-get install -y python3 python3-pip`,
+        brew: 'brew install python',
+        winget: 'winget install Python.Python.3',
+        choco: 'choco install python'
+      },
+      git: {
+        pkg: 'pkg install -y git',
+        apt: `${sudo}apt-get install -y git`,
+        brew: 'brew install git',
+        winget: 'winget install Git.Git',
+        choco: 'choco install git'
+      },
+      curl: {
+        pkg: 'pkg install -y curl',
+        apt: `${sudo}apt-get install -y curl`,
+        brew: 'brew install curl',
+        winget: '', // Default on Windows 10+
+        choco: 'choco install curl'
+      },
+      rust: {
+        pkg: 'pkg install -y rust',
+        apt: `${sudo}apt-get install -y rustc cargo`,
+        brew: 'brew install rust',
+        winget: 'winget install Rustlang.Rustup',
+        choco: 'choco install rust'
+      },
+      golang: {
+        pkg: 'pkg install -y golang',
+        apt: `${sudo}apt-get install -y golang`,
+        brew: 'brew install go',
+        winget: 'winget install GoLang.Go',
+        choco: 'choco install golang'
+      }
+    };
+
+    // Aliases
+    commands['nodejs'] = commands['node'];
+    
+    // Dependencies bundled with others
+    if (['npm', 'pip', 'cargo'].includes(depName)) return '';
+
+    const cmdSet = commands[depName];
+    if (!cmdSet) return '';
+    return cmdSet[this.pkgManager] || '';
+  }
+
   detect(depName) {
-    const conf = DEP_COMMANDS[depName];
-    if (!conf) {
-      return { installed: false, version: null, path: null };
-    }
+    const conf = DEP_DETECTION[depName];
+    if (!conf) return { installed: false, version: null, path: null };
+
     try {
       const output = execSync(conf.detect, {
         encoding: 'utf8',
@@ -57,10 +107,8 @@ class DependencyManager {
       let depPath = '';
       try {
         const cmdBin = conf.detect.split(' ')[0];
-        depPath = execSync(`command -v ${cmdBin}`, {
-          encoding: 'utf8',
-          stdio: ['pipe', 'pipe', 'ignore'],
-        }).trim();
+        const whereCmd = os.platform() === 'win32' ? `where ${cmdBin}` : `command -v ${cmdBin}`;
+        depPath = execSync(whereCmd, { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
       } catch (_) { /* ignore */ }
 
       return { installed: true, version, path: depPath };
@@ -69,30 +117,14 @@ class DependencyManager {
     }
   }
 
-  /**
-   * Convenience alias for detect().installed.
-   * Used by UI and command modules.
-   * @param {string} depName
-   * @returns {boolean}
-   */
   isInstalled(depName) {
     return this.detect(depName).installed;
   }
 
-  /**
-   * Check whether the installed version satisfies a minimum.
-   * @param {string} depName
-   * @param {string} minVersion
-   * @returns {{ compatible: boolean, current: string|null, required: string }}
-   */
   checkVersion(depName, minVersion) {
     const info = this.detect(depName);
-    if (!info.installed) {
-      return { compatible: false, current: null, required: minVersion };
-    }
-    if (!minVersion || info.version === 'unknown') {
-      return { compatible: true, current: info.version, required: minVersion };
-    }
+    if (!info.installed) return { compatible: false, current: null, required: minVersion };
+    if (!minVersion || info.version === 'unknown') return { compatible: true, current: info.version, required: minVersion };
 
     const currentSemver = semver.coerce(info.version);
     const minSemver = semver.coerce(minVersion);
@@ -104,32 +136,26 @@ class DependencyManager {
         required: minVersion,
       };
     }
-
     return { compatible: true, current: info.version, required: minVersion };
   }
 
-  /**
-   * Install a dependency via Termux pkg or relevant package manager.
-   * Returns a promise that resolves when installation is done.
-   * @param {string} depName
-   * @returns {Promise<void>}
-   */
   install(depName) {
     return new Promise((resolve, reject) => {
-      const conf = DEP_COMMANDS[depName];
+      const conf = DEP_DETECTION[depName];
       if (!conf) return reject(new Error(`Unknown dependency: ${depName}`));
-      if (!conf.install) {
-        // Comes bundled with another package
-        return resolve();
+      
+      const installCmdStr = this.getInstallCommand(depName);
+      if (!installCmdStr) {
+        return resolve(); // Bundled or unsupported auto-install
       }
 
       logger.info(`Installing dependency: ${depName}...`);
 
-      const parts = conf.install.split(' ');
+      const parts = installCmdStr.split(' ');
       const cmd = parts[0];
       const args = parts.slice(1);
 
-      const child = spawn(cmd, args, { stdio: 'inherit' });
+      const child = spawn(cmd, args, { stdio: 'inherit', shell: os.platform() === 'win32' });
 
       child.on('error', (err) => {
         reject(new Error(`Failed to install ${depName}: ${err.message}`));
@@ -146,33 +172,18 @@ class DependencyManager {
     });
   }
 
-  /**
-   * Verify that a dependency is functional.
-   * @param {string} depName
-   * @returns {boolean}
-   */
   verify(depName) {
     return this.detect(depName).installed;
   }
 
-  /**
-   * Update a dependency (re-install).
-   * @param {string} depName
-   * @returns {Promise<void>}
-   */
   update(depName) {
     return this.install(depName);
   }
 
-  /**
-   * Get status of all known dependencies.
-   * @returns {Object<string, { installed: boolean, version: string|null, path: string|null }>}
-   */
   getAll() {
     const status = {};
-    // Deduplicate: 'node' and 'nodejs' are the same
     const seen = new Set();
-    for (const dep of Object.keys(DEP_COMMANDS)) {
+    for (const dep of Object.keys(DEP_DETECTION)) {
       const canonical = dep === 'nodejs' ? 'node' : dep;
       if (seen.has(canonical)) continue;
       seen.add(canonical);
@@ -181,15 +192,6 @@ class DependencyManager {
     return status;
   }
 
-  /**
-   * Resolve dependencies from a tool manifest.
-   *
-   * Manifest dependencies format:
-   *   [ { name: "nodejs", minVersion: "18.0.0", required: true }, ... ]
-   *
-   * @param {object} manifest
-   * @returns {{ satisfied: Array, missing: Array, incompatible: Array }}
-   */
   resolveDependencies(manifest) {
     const deps = manifest.dependencies || [];
     const result = { satisfied: [], missing: [], incompatible: [] };
@@ -197,7 +199,6 @@ class DependencyManager {
     for (const dep of deps) {
       const depName = dep.name || dep;
       const minVersion = dep.minVersion || null;
-
       const info = this.detect(depName);
 
       if (!info.installed) {
@@ -205,11 +206,7 @@ class DependencyManager {
       } else if (minVersion) {
         const check = this.checkVersion(depName, minVersion);
         if (!check.compatible) {
-          result.incompatible.push({
-            dep: depName,
-            current: check.current,
-            required: check.required,
-          });
+          result.incompatible.push({ dep: depName, current: check.current, required: check.required });
         } else {
           result.satisfied.push({ dep: depName, version: check.current });
         }

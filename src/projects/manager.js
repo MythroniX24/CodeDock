@@ -94,16 +94,16 @@ class ProjectManager {
     return path.isAbsolute(normalized);
   }
 
-  /**
-   * Resolve ~ to $HOME.
-   * @param {string} dirPath
-   * @returns {string}
-   */
   resolveHome(dirPath) {
     if (!dirPath) return '';
-    const home = process.env.HOME || '/data/data/com.termux/files/home';
+    const { getHome } = require('../core/environment');
+    const home = getHome();
     if (dirPath === '~') return home;
-    if (dirPath.startsWith('~/')) return path.join(home, dirPath.slice(2));
+    
+    // Support both ~/ (unix) and ~\ (windows)
+    if (dirPath.startsWith('~/') || dirPath.startsWith('~\\')) {
+      return path.join(home, dirPath.slice(2));
+    }
     return path.resolve(dirPath);
   }
 
