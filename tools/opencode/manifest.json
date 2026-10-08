@@ -32,8 +32,8 @@
   ],
   "architectures": ["aarch64", "x86_64", "armv7l"],
   "compatibility": {
-    "termux": true,
-    "termuxNotes": "Works via npm install",
+    "termux": "proot",
+    "termuxNotes": "Requires glibc; automatically managed by CodeDock via proot-distro",
     "minNodeVersion": "18.0.0"
   },
   "verification": {

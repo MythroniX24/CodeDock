@@ -26,8 +26,8 @@
   ],
   "architectures": ["aarch64", "x86_64"],
   "compatibility": {
-    "termux": true,
-    "termuxNotes": "May require proot-distro for full compatibility",
+    "termux": "proot",
+    "termuxNotes": "Requires glibc; automatically managed by CodeDock via proot-distro",
     "minNodeVersion": ""
   },
   "verification": {
