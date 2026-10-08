@@ -1,31 +1,37 @@
 {
-  "name": "@mythronix24/codebox",
+  "name": "codedock",
   "version": "1.0.0",
-  "description": "A modern development environment and code workspace.",
-  "main": "index.js",
+  "description": "All-in-one manager for coding/AI CLI tools on Termux",
+  "main": "src/index.js",
+  "bin": {
+    "codedock": "./bin/codedock"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bin/codedock",
+    "test": "node tests/run.js"
+  },
+  "keywords": ["termux", "cli", "coding", "ai", "tools", "manager", "claude", "codex", "gemini"],
+  "author": "CodeDock Contributors",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6",
+    "ora": "^5.4.1",
+    "semver": "^7.6.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MythroniX24/CodeBox.git"
+    "url": "https://github.com/MythroniX24/CodeDock.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/MythroniX24/CodeBox/issues"
-  },
-  "homepage": "https://github.com/MythroniX24/CodeBox#readme",
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "commander": "^12.0.0",
-    "inquirer": "^8.2.6",
-    "ora": "^5.4.1",
-    "blessed": "^0.1.81"
-  },
-  "bin": {
-    "codebox": "./bin/codebox"
-  }
+  "files": [
+    "bin/",
+    "src/",
+    "tools/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ]
 }

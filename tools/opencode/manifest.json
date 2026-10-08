@@ -2,11 +2,54 @@
   "id": "opencode",
   "name": "OpenCode",
   "command": "opencode",
-  "description": "OpenCode agent platform",
-  "installation": { "type": "npm", "package": "opencode-cli", "args": ["-g"] },
-  "dependencies": ["node", "npm"],
-  "architectures": ["aarch64", "x86_64", "armv7l", "i686"],
-  "compatibility": { "termux": true },
-  "verification": { "command": "opencode --version" },
-  "launcher": { "type": "terminal" }
+  "description": "OpenCode AI Assistant",
+  "homepage": "https://opencode.ai",
+  "category": "ai-coding-agent",
+  "aliases": ["opencode-ai"],
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "package": "opencode-ai",
+      "global": true,
+      "command": "npm install -g opencode-ai"
+    },
+    "fallback": {
+      "method": "shell",
+      "command": "curl -fsSL https://opencode.ai/install | bash"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g opencode-ai"
+  },
+  "update": {
+    "method": "npm",
+    "command": "npm update -g opencode-ai"
+  },
+  "dependencies": [
+    { "name": "nodejs", "minVersion": "18.0.0", "required": true },
+    { "name": "npm", "minVersion": "8.0.0", "required": true }
+  ],
+  "architectures": ["aarch64", "x86_64", "armv7l"],
+  "compatibility": {
+    "termux": true,
+    "termuxNotes": "Works via npm install",
+    "minNodeVersion": "18.0.0"
+  },
+  "verification": {
+    "command": "opencode",
+    "args": ["--version"],
+    "expectedOutput": "opencode"
+  },
+  "launcher": {
+    "command": "opencode",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  },
+  "auth": {
+    "required": true,
+    "method": "provider-direct",
+    "notes": "User configures API keys for preferred LLM"
+  }
 }

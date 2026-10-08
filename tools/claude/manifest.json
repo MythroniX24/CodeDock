@@ -2,11 +2,63 @@
   "id": "claude",
   "name": "Claude Code",
   "command": "claude",
-  "description": "Anthropic's AI coding agent",
-  "installation": { "type": "npm", "package": "@anthropic-ai/claude-code", "args": ["-g"] },
-  "dependencies": ["node", "npm"],
-  "architectures": ["aarch64", "x86_64", "armv7l", "i686"],
-  "compatibility": { "termux": true },
-  "verification": { "command": "claude --version" },
-  "launcher": { "type": "terminal" }
+  "description": "Anthropic's AI coding agent for the terminal",
+  "homepage": "https://claude.ai/code",
+  "category": "ai-coding-agent",
+  "aliases": ["claude-code", "claudecode"],
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "package": "@anthropic-ai/claude-code",
+      "global": true,
+      "command": "npm install -g @anthropic-ai/claude-code"
+    },
+    "termux": {
+      "method": "npm",
+      "package": "@anthropic-ai/claude-code",
+      "global": true,
+      "command": "npm install -g @anthropic-ai/claude-code",
+      "notes": "May require glibc compatibility layer on some devices. The npm package may be deprecated in favor of standalone installer - fallback to npm method which still works in Termux."
+    },
+    "fallback": {
+      "method": "shell",
+      "command": "curl -fsSL https://claude.ai/install.sh | bash",
+      "notes": "Official standalone installer - may not work directly in Termux without proot"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g @anthropic-ai/claude-code"
+  },
+  "update": {
+    "method": "npm",
+    "command": "npm update -g @anthropic-ai/claude-code"
+  },
+  "dependencies": [
+    { "name": "nodejs", "minVersion": "18.0.0", "required": true },
+    { "name": "npm", "minVersion": "8.0.0", "required": true },
+    { "name": "git", "required": false }
+  ],
+  "architectures": ["aarch64", "x86_64"],
+  "compatibility": {
+    "termux": true,
+    "termuxNotes": "Works via npm install on most aarch64 devices. Some native modules may need build-essential.",
+    "minNodeVersion": "18.0.0"
+  },
+  "verification": {
+    "command": "claude",
+    "args": ["--version"],
+    "expectedOutput": "claude"
+  },
+  "launcher": {
+    "command": "claude",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  },
+  "auth": {
+    "required": true,
+    "method": "provider-direct",
+    "notes": "Authentication handled by Claude Code directly via Anthropic API key or OAuth"
+  }
 }

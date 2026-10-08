@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+'use strict';
+
+const { main } = require('../src/index');
+main().catch(err => {
+  console.error('Fatal error:', err.message);
+  process.exit(1);
+});

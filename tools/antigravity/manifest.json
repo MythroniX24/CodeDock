@@ -2,11 +2,48 @@
   "id": "antigravity",
   "name": "Antigravity CLI",
   "command": "agy",
-  "description": "Google Advanced Agentic Coding CLI",
-  "installation": { "type": "npm", "package": "antigravity-cli", "args": ["-g"] },
-  "dependencies": ["node", "npm"],
+  "description": "Antigravity CLI (Google)",
+  "homepage": "https://antigravity.google",
+  "category": "ai-coding-agent",
+  "aliases": ["agy", "antigravity-cli"],
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "curl -fsSL https://antigravity.google/cli/install.sh | bash",
+      "notes": "Official shell installer"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "rm -rf ~/.antigravity && rm $(which agy)"
+  },
+  "update": {
+    "method": "shell",
+    "command": "curl -fsSL https://antigravity.google/cli/install.sh | bash"
+  },
+  "dependencies": [
+    { "name": "curl", "required": true }
+  ],
   "architectures": ["aarch64", "x86_64"],
-  "compatibility": { "termux": true },
-  "verification": { "command": "agy --version" },
-  "launcher": { "type": "terminal" }
+  "compatibility": {
+    "termux": true,
+    "termuxNotes": "May require proot-distro for full compatibility",
+    "minNodeVersion": ""
+  },
+  "verification": {
+    "command": "agy",
+    "args": ["--version"],
+    "expectedOutput": "agy"
+  },
+  "launcher": {
+    "command": "agy",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  },
+  "auth": {
+    "required": true,
+    "method": "provider-direct",
+    "notes": "Provider direct auth"
+  }
 }

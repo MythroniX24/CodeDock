@@ -2,11 +2,50 @@
   "id": "codebuff",
   "name": "Codebuff",
   "command": "codebuff",
-  "description": "AI coding tool",
-  "installation": { "type": "npm", "package": "codebuff", "args": ["-g"] },
-  "dependencies": ["node", "npm"],
-  "architectures": ["aarch64", "x86_64", "armv7l", "i686"],
-  "compatibility": { "termux": true },
-  "verification": { "command": "codebuff --version" },
-  "launcher": { "type": "terminal" }
+  "description": "Codebuff CLI tool",
+  "homepage": "https://codebuff.com",
+  "category": "ai-coding-agent",
+  "aliases": ["code-buff"],
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "package": "codebuff",
+      "global": true,
+      "command": "npm install -g codebuff"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g codebuff"
+  },
+  "update": {
+    "method": "npm",
+    "command": "npm update -g codebuff"
+  },
+  "dependencies": [
+    { "name": "nodejs", "minVersion": "18.0.0", "required": true },
+    { "name": "npm", "minVersion": "8.0.0", "required": true }
+  ],
+  "architectures": ["aarch64", "x86_64", "armv7l"],
+  "compatibility": {
+    "termux": true,
+    "termuxNotes": "Works on Termux natively via npm",
+    "minNodeVersion": "18.0.0"
+  },
+  "verification": {
+    "command": "codebuff",
+    "args": ["--version"],
+    "expectedOutput": "codebuff"
+  },
+  "launcher": {
+    "command": "codebuff",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  },
+  "auth": {
+    "required": true,
+    "method": "provider-direct",
+    "notes": "Provider direct auth"
+  }
 }

@@ -3,10 +3,49 @@
   "name": "Google Gemini CLI",
   "command": "gemini",
   "description": "Google Gemini CLI agent",
-  "installation": { "type": "npm", "package": "gemini-cli", "args": ["-g"] },
-  "dependencies": ["node", "npm"],
-  "architectures": ["aarch64", "x86_64", "armv7l", "i686"],
-  "compatibility": { "termux": true },
-  "verification": { "command": "gemini --version" },
-  "launcher": { "type": "terminal" }
+  "homepage": "https://gemini.google.com",
+  "category": "ai-coding-agent",
+  "aliases": ["gemini-cli", "google-gemini"],
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "package": "@google/gemini-cli",
+      "global": true,
+      "command": "npm install -g @google/gemini-cli"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g @google/gemini-cli"
+  },
+  "update": {
+    "method": "npm",
+    "command": "npm update -g @google/gemini-cli"
+  },
+  "dependencies": [
+    { "name": "nodejs", "minVersion": "18.0.0", "required": true },
+    { "name": "npm", "minVersion": "8.0.0", "required": true }
+  ],
+  "architectures": ["aarch64", "x86_64", "armv7l"],
+  "compatibility": {
+    "termux": true,
+    "termuxNotes": "Supported on aarch64, x86_64, armv7l.",
+    "minNodeVersion": "18.0.0"
+  },
+  "verification": {
+    "command": "gemini",
+    "args": ["--version"],
+    "expectedOutput": "gemini"
+  },
+  "launcher": {
+    "command": "gemini",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  },
+  "auth": {
+    "required": true,
+    "method": "provider-direct",
+    "notes": "Google API key or OAuth"
+  }
 }

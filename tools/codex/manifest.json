@@ -2,11 +2,50 @@
   "id": "codex",
   "name": "OpenAI Codex CLI",
   "command": "codex",
-  "description": "OpenAI Codex command line interface",
-  "installation": { "type": "npm", "package": "codex-cli", "args": ["-g"] },
-  "dependencies": ["node", "npm"],
-  "architectures": ["aarch64", "x86_64", "armv7l", "i686"],
-  "compatibility": { "termux": true },
-  "verification": { "command": "codex --version" },
-  "launcher": { "type": "terminal" }
+  "description": "OpenAI Codex CLI",
+  "homepage": "https://openai.com",
+  "category": "ai-coding-agent",
+  "aliases": ["codex-cli", "openai-codex"],
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "package": "@openai/codex",
+      "global": true,
+      "command": "npm install -g @openai/codex"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g @openai/codex"
+  },
+  "update": {
+    "method": "npm",
+    "command": "npm update -g @openai/codex"
+  },
+  "dependencies": [
+    { "name": "nodejs", "minVersion": "22.0.0", "required": true },
+    { "name": "npm", "minVersion": "8.0.0", "required": true }
+  ],
+  "architectures": ["aarch64", "x86_64"],
+  "compatibility": {
+    "termux": true,
+    "termuxNotes": "Requires Node.js 22+",
+    "minNodeVersion": "22.0.0"
+  },
+  "verification": {
+    "command": "codex",
+    "args": ["--version"],
+    "expectedOutput": "codex"
+  },
+  "launcher": {
+    "command": "codex",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  },
+  "auth": {
+    "required": true,
+    "method": "provider-direct",
+    "notes": "OpenAI API key"
+  }
 }

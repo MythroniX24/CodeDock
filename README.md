@@ -1,50 +1,34 @@
-# CodeBox
-
-CodeBox is an all-in-one manager for installing, managing, and launching coding/AI CLI tools on Termux. 
-
-CodeBox supports tools such as:
-- Claude Code
-- OpenAI Codex CLI
-- Google Gemini CLI
-- Antigravity CLI
-- OpenCode
-- Codebuff
-
-## Installation
-
-Via npm:
-\`\`\`bash
-npm install -g codebox
-\`\`\`
-
-Bootstrap script:
-\`\`\`bash
-curl -fsSL https://raw.githubusercontent.com/MythroniX24/CodeBox/main/install.sh | bash
-\`\`\`
-
-## Usage
-
-Start the interactive dashboard:
-\`\`\`bash
-codebox
-\`\`\`
-
-Use the CLI directly:
-\`\`\`bash
-codebox list
-codebox install claude
-codebox uninstall codebuff
-codebox open gemini
-codebox doctor
-\`\`\`
+# CodeDock
+All-in-one manager for coding/AI CLI tools on Termux.
 
 ## Features
+- Manage and install popular AI CLI tools directly from Termux.
+- Verified installation methods for Termux architectures.
+- Easy to use CLI interface.
 
-- **No Server**: Completely local manager without accounts, logins, or cloud sync.
-- **Dependency Resolution**: Automatically installs and checks Termux dependencies (Node.js, Python, Git, etc.).
-- **Mobile UI**: A clean interactive command-line interface optimized for Android phone screens.
-- **Project Manager**: Manage recent projects directly from the interface.
+## Quick Start
+```bash
+# Using npm
+npm install -g codedock
+codedock
+
+# Using Installer
+curl -fsSL https://raw.githubusercontent.com/MythroniX24/CodeDock/main/install.sh | bash
+```
+
+## Supported Tools
+- Claude Code (@anthropic-ai/claude-code)
+- OpenAI Codex CLI (@openai/codex)
+- Google Gemini CLI (@google/gemini-cli)
+- Antigravity CLI (agy)
+- OpenCode (opencode-ai)
+- Codebuff (codebuff)
+
+## Usage
+Run `codedock` to launch the interactive prompt.
+
+## Adding New Tools
+Create a new folder in `tools/` with a `manifest.json` using the unified schema.
 
 ## License
-
-MIT License
+MIT License. See LICENSE for details.
