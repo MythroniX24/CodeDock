@@ -44,14 +44,18 @@ async function showDashboard() {
       }
     }
 
-    console.log(t.secondary.bold(`  Installed Tools (${installedTools.length})`));
+    const headerText = ` Installed Tools (${installedTools.length}) `;
+    const dashCount = Math.max(0, 42 - headerText.length);
+    console.log(t.border('  ╭─') + t.secondary.bold(headerText) + t.border('─'.repeat(dashCount) + '╮'));
+    
     if (installedTools.length === 0) {
-      console.log(t.muted('  No tools installed yet. Go to Manage Tools to install.'));
+      console.log(t.border('  │ ') + t.muted('No tools installed yet. Go to Manage Tools'.padEnd(40)) + t.border('│'));
     } else {
       for (const tool of installedTools) {
-        console.log(`  ${t.success('✓')} ${t.text(tool.name.padEnd(18))} ${t.success('Installed')}`);
+        console.log(t.border('  │ ') + t.success('✓ ') + t.text(tool.name.padEnd(38)) + t.border('│'));
       }
     }
+    console.log(t.border('  ╰──────────────────────────────────────────╯'));
     console.log();
 
     const choices = [
@@ -209,14 +213,18 @@ async function showDependencies() {
   const depManager = new DependencyManager();
   const t = getTheme();
 
-  console.log(t.secondary.bold('\n  Dependencies Status\n'));
+  console.clear();
+  console.log();
+  console.log(t.border('  ╭─') + t.secondary.bold(' Dependencies Status ') + t.border('────────────────────╮'));
 
   const allDeps = depManager.getAll();
   for (const [name, info] of Object.entries(allDeps)) {
-    const mark = info.installed ? t.success('✓') : t.error('✗');
-    const ver = info.version ? t.muted(`v${info.version}`) : '';
-    console.log(`  ${mark} ${t.text(name.padEnd(18))} ${ver}`);
+    const mark = info.installed ? t.success('✓ ') : t.error('✗ ');
+    const ver = info.version ? `v${info.version}` : '';
+    const line = mark + t.text(name.padEnd(21)) + t.muted(ver.padEnd(18));
+    console.log(t.border('  │ ') + line + t.border('│'));
   }
+  console.log(t.border('  ╰──────────────────────────────────────────╯'));
   console.log();
 }
 

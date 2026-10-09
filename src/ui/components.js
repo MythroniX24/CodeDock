@@ -9,11 +9,10 @@ function banner() {
   const t = getTheme();
   
   console.log('');
-  console.log(t.border('  ╭──────────────────────────────────────╮'));
-  console.log(t.border('  │') + '  ' + t.secondary.bold('C O D E D O C K') + ' '.repeat(Math.max(0, 17 - v.length)) + t.muted('v' + v) + '   ' + t.border('│'));
-  console.log(t.border('  │') + '  ' + t.text('Termux Coding Tools Manager') + ' '.repeat(6) + t.border('│'));
-  console.log(t.border('  ╰──────────────────────────────────────╯'));
-  console.log('');
+  console.log(t.border('  ╭──────────────────────────────────────────╮'));
+  console.log(t.border('  │') + '  ' + t.secondary.bold('C O D E D O C K') + ' '.repeat(Math.max(0, 21 - v.length)) + t.muted('v' + v) + '  ' + t.border('│'));
+  console.log(t.border('  │') + '  ' + t.text('Termux Coding Tools Manager') + ' '.repeat(12) + t.border('│'));
+  console.log(t.border('  ╰──────────────────────────────────────────╯'));
 }
 
 function toolStatusLine(tool, isInstalled) {
@@ -25,10 +24,10 @@ function toolStatusLine(tool, isInstalled) {
 async function systemInfoBlock(envInfo) {
   const t = getTheme();
   
-  console.log(t.border('╭─') + t.secondary(' System Info ') + t.border('────────────────────────╮'));
-  console.log(t.border('│ ') + t.text('OS:     ') + t.primary(envInfo.os.padEnd(10)) + t.text(' Arch: ') + t.primary(envInfo.arch.padEnd(8)) + t.border('│'));
-  console.log(t.border('│ ') + t.text('Termux: ') + (envInfo.isTermux ? t.success('Yes'.padEnd(10)) : t.error('No '.padEnd(10))) + t.text(' Pkg:  ') + t.primary((envInfo.packageManager || 'npm').padEnd(8)) + t.border('│'));
-  console.log(t.border('╰──────────────────────────────────────╯\n'));
+  console.log(t.border('  ╭─') + t.secondary(' System Info ') + t.border('────────────────────────────╮'));
+  console.log(t.border('  │ ') + t.text('OS:     ') + t.primary(envInfo.os.padEnd(11)) + t.text(' Arch: ') + t.primary(envInfo.arch.padEnd(15)) + t.border('│'));
+  console.log(t.border('  │ ') + t.text('Termux: ') + (envInfo.isTermux ? t.success('Yes'.padEnd(11)) : t.error('No '.padEnd(11))) + t.text(' Pkg:  ') + t.primary((envInfo.packageManager || 'npm').padEnd(15)) + t.border('│'));
+  console.log(t.border('  ╰──────────────────────────────────────────╯\n'));
 }
 
 async function confirmPrompt(message) {
