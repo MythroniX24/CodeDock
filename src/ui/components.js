@@ -81,21 +81,23 @@ async function autocompletePrompt(message, source) {
 
 function progressBar(current, total, width = 20) {
   const t = getTheme();
-  const percent = Math.min(1, current / total);
-  const filled = Math.round(width * percent);
-  const empty = width - filled;
+  const w = Math.max(0, width);
+  const percent = Math.max(0, Math.min(1, current / total));
+  const filled = Math.round(w * percent);
+  const empty = w - filled;
   return t.primary('█'.repeat(filled)) + t.muted('░'.repeat(empty));
 }
 
 function box(content, width = 40) {
   const t = getTheme();
+  const w = Math.max(0, width);
   const lines = content.split('\n');
-  const top = t.border('┌' + '─'.repeat(width) + '┐');
-  const bottom = t.border('└' + '─'.repeat(width) + '┘');
+  const top = t.border('┌' + '─'.repeat(w) + '┐');
+  const bottom = t.border('└' + '─'.repeat(w) + '┘');
   
   console.log(top);
   lines.forEach(line => {
-    const padLength = width - line.replace(/\x1B\[[0-9;]*[mG]/g, '').length;
+    const padLength = w - line.replace(/\x1B\[[0-9;]*[mG]/g, '').length;
     console.log(t.border('│') + line + ' '.repeat(Math.max(0, padLength)) + t.border('│'));
   });
   console.log(bottom);
@@ -103,7 +105,7 @@ function box(content, width = 40) {
 
 function divider(char = '─', width = 40) {
   const t = getTheme();
-  console.log(t.border(char.repeat(width)));
+  console.log(t.border(char.repeat(Math.max(0, width))));
 }
 
 module.exports = {

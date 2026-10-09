@@ -55,10 +55,14 @@ async function manageApiKeys(config) {
     const keys = config.getApiKeys();
     const keyNames = Object.keys(keys);
     
-    const choices = keyNames.map(k => ({
-      name: `✏️  Edit ${k} (Current: ${keys[k].substring(0,4)}...${keys[k].substring(keys[k].length-4)})`,
-      value: k
-    }));
+    const choices = keyNames.map(k => {
+      const val = keys[k];
+      const masked = val.length <= 8 ? '***' : `${val.substring(0, 4)}...${val.substring(val.length - 4)}`;
+      return {
+        name: `✏️  Edit ${k} (Current: ${masked})`,
+        value: k
+      };
+    });
     
     choices.push(new (require('inquirer')).Separator());
     choices.push({ name: '➕ Add New API Key', value: 'add_new' });
