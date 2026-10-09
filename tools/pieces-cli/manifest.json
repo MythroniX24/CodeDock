@@ -1,0 +1,47 @@
+{
+  "id": "pieces-cli",
+  "name": "Pieces CLI",
+  "command": "pieces-cli",
+  "description": "Manage your code snippets with AI.",
+  "homepage": "https://github.com/example/pieces-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g pieces-cli-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g pieces-cli-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "pieces-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "pieces-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

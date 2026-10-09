@@ -1,0 +1,47 @@
+{
+  "id": "fzf",
+  "name": "fzf",
+  "command": "fzf",
+  "description": "A command-line fuzzy finder.",
+  "homepage": "https://github.com/example/fzf",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g fzf-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g fzf-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "fzf",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "fzf",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

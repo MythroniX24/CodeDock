@@ -1,0 +1,47 @@
+{
+  "id": "gh-copilot",
+  "name": "gh copilot",
+  "command": "gh-copilot",
+  "description": "GitHub CLI extension for Copilot.",
+  "homepage": "https://github.com/example/gh-copilot",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g gh-copilot-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g gh-copilot-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "gh-copilot",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "gh-copilot",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

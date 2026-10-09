@@ -1,0 +1,47 @@
+{
+  "id": "aws-cli",
+  "name": "AWS CLI",
+  "command": "aws-cli",
+  "description": "Universal Command Line Interface for Amazon Web Services.",
+  "homepage": "https://github.com/example/aws-cli",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g aws-cli-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g aws-cli-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "aws-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "aws-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

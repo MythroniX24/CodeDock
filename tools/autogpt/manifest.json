@@ -1,0 +1,47 @@
+{
+  "id": "autogpt",
+  "name": "AutoGPT",
+  "command": "autogpt",
+  "description": "An experimental open-source attempt to make GPT-4 fully autonomous.",
+  "homepage": "https://github.com/example/autogpt",
+  "category": "ai-coding-agent",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g autogpt-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g autogpt-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "autogpt",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "autogpt",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

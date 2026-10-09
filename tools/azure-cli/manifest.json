@@ -1,0 +1,47 @@
+{
+  "id": "azure-cli",
+  "name": "Azure CLI",
+  "command": "azure-cli",
+  "description": "Command-line tools for Azure.",
+  "homepage": "https://github.com/example/azure-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g azure-cli-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g azure-cli-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "azure-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "azure-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

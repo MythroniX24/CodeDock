@@ -1,0 +1,47 @@
+{
+  "id": "copilot-cli",
+  "name": "GitHub Copilot CLI",
+  "command": "copilot-cli",
+  "description": "GitHub Copilot in the CLI.",
+  "homepage": "https://github.com/example/copilot-cli",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g copilot-cli-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g copilot-cli-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "copilot-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "copilot-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

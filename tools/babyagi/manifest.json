@@ -1,0 +1,47 @@
+{
+  "id": "babyagi",
+  "name": "BabyAGI",
+  "command": "babyagi",
+  "description": "An AI-powered task management system.",
+  "homepage": "https://github.com/example/babyagi",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g babyagi-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g babyagi-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "babyagi",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "babyagi",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

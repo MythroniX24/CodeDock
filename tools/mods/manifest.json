@@ -1,0 +1,47 @@
+{
+  "id": "mods",
+  "name": "Mods",
+  "command": "mods",
+  "description": "AI on the command line, built for pipelines.",
+  "homepage": "https://github.com/example/mods",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g mods-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g mods-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "mods",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "mods",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

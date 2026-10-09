@@ -1,0 +1,47 @@
+{
+  "id": "tmux",
+  "name": "tmux",
+  "command": "tmux",
+  "description": "Terminal multiplexer.",
+  "homepage": "https://github.com/example/tmux",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g tmux-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g tmux-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "tmux",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "tmux",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

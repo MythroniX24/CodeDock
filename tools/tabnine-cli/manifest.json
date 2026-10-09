@@ -1,0 +1,47 @@
+{
+  "id": "tabnine-cli",
+  "name": "Tabnine CLI",
+  "command": "tabnine-cli",
+  "description": "AI code completion tool.",
+  "homepage": "https://github.com/example/tabnine-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g tabnine-cli-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g tabnine-cli-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "tabnine-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "tabnine-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

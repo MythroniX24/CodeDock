@@ -1,0 +1,47 @@
+{
+  "id": "heroku-cli",
+  "name": "Heroku CLI",
+  "command": "heroku-cli",
+  "description": "CLI to manage Heroku apps.",
+  "homepage": "https://github.com/example/heroku-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g heroku-cli-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g heroku-cli-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "heroku-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "heroku-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "bloop",
+  "name": "Bloop",
+  "command": "bloop",
+  "description": "AI code search engine.",
+  "homepage": "https://github.com/example/bloop",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g bloop-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g bloop-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "bloop",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "bloop",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

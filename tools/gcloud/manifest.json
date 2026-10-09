@@ -1,0 +1,47 @@
+{
+  "id": "gcloud",
+  "name": "Google Cloud CLI",
+  "command": "gcloud",
+  "description": "CLI for Google Cloud Platform.",
+  "homepage": "https://github.com/example/gcloud",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g gcloud-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g gcloud-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "gcloud",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "gcloud",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

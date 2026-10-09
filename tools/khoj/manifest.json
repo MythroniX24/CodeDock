@@ -1,0 +1,47 @@
+{
+  "id": "khoj",
+  "name": "Khoj",
+  "command": "khoj",
+  "description": "An AI personal assistant for your digital brain.",
+  "homepage": "https://github.com/example/khoj",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g khoj-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g khoj-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "khoj",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "khoj",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

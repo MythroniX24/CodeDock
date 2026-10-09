@@ -1,0 +1,47 @@
+{
+  "id": "k8sgpt",
+  "name": "K8sGPT",
+  "command": "k8sgpt",
+  "description": "Giving Kubernetes Superpowers to everyone.",
+  "homepage": "https://github.com/example/k8sgpt",
+  "category": "ai-coding-agent",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g k8sgpt-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g k8sgpt-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "k8sgpt",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "k8sgpt",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

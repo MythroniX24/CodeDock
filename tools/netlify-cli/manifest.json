@@ -1,0 +1,47 @@
+{
+  "id": "netlify-cli",
+  "name": "Netlify CLI",
+  "command": "netlify-cli",
+  "description": "Netlify command-line interface.",
+  "homepage": "https://github.com/example/netlify-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g netlify-cli-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g netlify-cli-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "netlify-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "netlify-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

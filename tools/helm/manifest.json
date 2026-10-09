@@ -1,0 +1,47 @@
+{
+  "id": "helm",
+  "name": "Helm",
+  "command": "helm",
+  "description": "The Kubernetes Package Manager.",
+  "homepage": "https://github.com/example/helm",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g helm-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g helm-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "helm",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "helm",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

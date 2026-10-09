@@ -1,0 +1,47 @@
+{
+  "id": "zoxide",
+  "name": "zoxide",
+  "command": "zoxide",
+  "description": "A smarter cd command.",
+  "homepage": "https://github.com/example/zoxide",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g zoxide-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g zoxide-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "zoxide",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "zoxide",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

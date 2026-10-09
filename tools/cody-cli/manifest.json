@@ -1,0 +1,47 @@
+{
+  "id": "cody-cli",
+  "name": "Cody CLI",
+  "command": "cody-cli",
+  "description": "Sourcegraph Cody for the terminal.",
+  "homepage": "https://github.com/example/cody-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g cody-cli-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g cody-cli-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "cody-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "cody-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

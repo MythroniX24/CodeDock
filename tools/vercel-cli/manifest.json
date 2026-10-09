@@ -1,0 +1,47 @@
+{
+  "id": "vercel-cli",
+  "name": "Vercel CLI",
+  "command": "vercel-cli",
+  "description": "Vercel command-line interface.",
+  "homepage": "https://github.com/example/vercel-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g vercel-cli-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g vercel-cli-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "vercel-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "vercel-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

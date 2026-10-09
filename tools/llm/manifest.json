@@ -1,0 +1,47 @@
+{
+  "id": "llm",
+  "name": "LLM (Simon Willison)",
+  "command": "llm",
+  "description": "Access large language models from the command-line",
+  "homepage": "https://github.com/example/llm",
+  "category": "ai-coding-agent",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g llm-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g llm-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "llm",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "llm",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "kubectl",
+  "name": "Kubectl",
+  "command": "kubectl",
+  "description": "Kubernetes command-line tool.",
+  "homepage": "https://github.com/example/kubectl",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g kubectl-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g kubectl-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "kubectl",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "kubectl",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

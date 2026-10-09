@@ -1,0 +1,47 @@
+{
+  "id": "docker-cli",
+  "name": "Docker CLI",
+  "command": "docker-cli",
+  "description": "Docker command line.",
+  "homepage": "https://github.com/example/docker-cli",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g docker-cli-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g docker-cli-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "docker-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "docker-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

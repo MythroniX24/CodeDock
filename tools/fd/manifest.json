@@ -1,0 +1,47 @@
+{
+  "id": "fd",
+  "name": "fd",
+  "command": "fd",
+  "description": "A simple, fast and user-friendly alternative to find.",
+  "homepage": "https://github.com/example/fd",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g fd-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g fd-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "fd",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "fd",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

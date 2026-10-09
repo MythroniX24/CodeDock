@@ -1,0 +1,47 @@
+{
+  "id": "kubecolor",
+  "name": "Kubecolor",
+  "command": "kubecolor",
+  "description": "Colorizes kubectl output.",
+  "homepage": "https://github.com/example/kubecolor",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g kubecolor-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g kubecolor-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "kubecolor",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "kubecolor",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

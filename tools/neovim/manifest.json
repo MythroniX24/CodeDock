@@ -1,0 +1,47 @@
+{
+  "id": "neovim",
+  "name": "Neovim",
+  "command": "neovim",
+  "description": "Vim-fork focused on extensibility and usability.",
+  "homepage": "https://github.com/example/neovim",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g neovim-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g neovim-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "neovim",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "neovim",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

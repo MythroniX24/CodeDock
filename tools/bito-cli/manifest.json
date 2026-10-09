@@ -1,0 +1,47 @@
+{
+  "id": "bito-cli",
+  "name": "Bito CLI",
+  "command": "bito-cli",
+  "description": "Bito AI CLI tool for 10x developer productivity.",
+  "homepage": "https://github.com/example/bito-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g bito-cli-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g bito-cli-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "bito-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "bito-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "bat",
+  "name": "bat",
+  "command": "bat",
+  "description": "A cat(1) clone with wings.",
+  "homepage": "https://github.com/example/bat",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g bat-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g bat-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "bat",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "bat",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

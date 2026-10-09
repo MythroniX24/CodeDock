@@ -1,0 +1,47 @@
+{
+  "id": "ollama",
+  "name": "Ollama",
+  "command": "ollama",
+  "description": "Get up and running with Llama 3, Mistral, Gemma, and other large language models locally.",
+  "homepage": "https://github.com/example/ollama",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g ollama-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g ollama-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "ollama",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "ollama",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

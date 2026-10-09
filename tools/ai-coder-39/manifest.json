@@ -1,0 +1,47 @@
+{
+  "id": "ai-coder-39",
+  "name": "AI Coder v39",
+  "command": "ai-coder-39",
+  "description": "Automated AI coding assistant agent number 39.",
+  "homepage": "https://github.com/example/ai-coder-39",
+  "category": "ai-coding-agent",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g ai-coder-39-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g ai-coder-39-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "ai-coder-39",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "ai-coder-39",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

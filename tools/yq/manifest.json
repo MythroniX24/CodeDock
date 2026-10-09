@@ -1,0 +1,47 @@
+{
+  "id": "yq",
+  "name": "yq",
+  "command": "yq",
+  "description": "Portable command-line YAML processor.",
+  "homepage": "https://github.com/example/yq",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g yq-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g yq-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "yq",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "yq",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

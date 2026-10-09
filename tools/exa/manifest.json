@@ -1,0 +1,47 @@
+{
+  "id": "exa",
+  "name": "exa",
+  "command": "exa",
+  "description": "A modern replacement for ls.",
+  "homepage": "https://github.com/example/exa",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g exa-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g exa-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "exa",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "exa",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

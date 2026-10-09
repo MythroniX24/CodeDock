@@ -1,0 +1,47 @@
+{
+  "id": "terraform",
+  "name": "Terraform",
+  "command": "terraform",
+  "description": "Infrastructure as code software tool.",
+  "homepage": "https://github.com/example/terraform",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g terraform-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g terraform-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "terraform",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "terraform",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

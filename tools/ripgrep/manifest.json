@@ -1,0 +1,47 @@
+{
+  "id": "ripgrep",
+  "name": "ripgrep",
+  "command": "ripgrep",
+  "description": "Line-oriented search tool.",
+  "homepage": "https://github.com/example/ripgrep",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g ripgrep-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g ripgrep-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "ripgrep",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "ripgrep",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

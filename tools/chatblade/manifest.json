@@ -1,0 +1,47 @@
+{
+  "id": "chatblade",
+  "name": "Chatblade",
+  "command": "chatblade",
+  "description": "A CLI Swiss Army Knife for ChatGPT.",
+  "homepage": "https://github.com/example/chatblade",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g chatblade-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g chatblade-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "chatblade",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "chatblade",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

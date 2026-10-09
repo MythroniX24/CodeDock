@@ -1,0 +1,47 @@
+{
+  "id": "devika",
+  "name": "Devika",
+  "command": "devika",
+  "description": "Agentic AI Software Engineer.",
+  "homepage": "https://github.com/example/devika",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g devika-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g devika-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "devika",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "devika",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

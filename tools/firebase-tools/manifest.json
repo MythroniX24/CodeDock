@@ -1,0 +1,47 @@
+{
+  "id": "firebase-tools",
+  "name": "Firebase CLI",
+  "command": "firebase-tools",
+  "description": "Firebase Command Line Tools.",
+  "homepage": "https://github.com/example/firebase-tools",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g firebase-tools-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g firebase-tools-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "firebase-tools",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "firebase-tools",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

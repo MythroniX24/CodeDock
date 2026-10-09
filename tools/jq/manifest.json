@@ -1,0 +1,47 @@
+{
+  "id": "jq",
+  "name": "jq",
+  "command": "jq",
+  "description": "Command-line JSON processor.",
+  "homepage": "https://github.com/example/jq",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g jq-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g jq-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "jq",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "jq",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

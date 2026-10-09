@@ -1,0 +1,47 @@
+{
+  "id": "lazygit",
+  "name": "Lazygit",
+  "command": "lazygit",
+  "description": "Simple terminal UI for git commands.",
+  "homepage": "https://github.com/example/lazygit",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "npm",
+      "command": "npm install -g lazygit-mock-package"
+    }
+  },
+  "uninstall": {
+    "method": "npm",
+    "command": "npm uninstall -g lazygit-mock-package"
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "minVersion": "16.0.0",
+      "required": true
+    }
+  ],
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "lazygit",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "lazygit",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}
