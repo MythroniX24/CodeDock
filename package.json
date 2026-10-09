@@ -1,6 +1,6 @@
 {
   "name": "codedock",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "All-in-one manager for coding/AI CLI tools on Termux",
   "main": "src/index.js",
   "bin": {
