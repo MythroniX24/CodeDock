@@ -8,7 +8,6 @@
   },
   "scripts": {
     "preinstall": "node scripts/check-install.js 2>/dev/null || true",
-    "postinstall": "chmod +x bin/codedock 2>/dev/null || true",
     "start": "node bin/codedock",
     "test": "node tests/run.js"
   },
