@@ -25,9 +25,12 @@ CodeDock is an all-in-one CLI application designed to securely install, manage, 
 npm install -g MythroniX24/CodeDock
 ```
 
-**Method 2: Standalone Shell Installer**
+**Method 2: Local Install / Development**
+If you are cloning this repository (especially on Android/Termux), **do not** use `npm install -g .` as Android's internal storage blocks execute permissions. Instead, use our universal installer:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MythroniX24/CodeDock/main/install.sh | bash
+git clone https://github.com/MythroniX24/CodeDock.git
+cd CodeDock
+bash install.sh
 ```
 
 ## 🛠 Supported AI Tools Out of the Box

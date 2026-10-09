@@ -7,6 +7,7 @@
     "codedock": "./bin/codedock"
   },
   "scripts": {
+    "postinstall": "chmod +x bin/codedock 2>/dev/null || true",
     "start": "node bin/codedock",
     "test": "node tests/run.js"
   },

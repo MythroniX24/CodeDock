@@ -1,41 +1,34 @@
 #!/bin/bash
+
+# CodeDock Universal Installer
+# This script ensures CodeDock installs correctly even on Android FAT32/exFAT storage
+# where 'chmod +x' is blocked, bypassing the "Permission Denied" issue.
+
 set -e
 
-echo "Starting CodeDock bootstrap installation..."
+echo "🚀 Starting CodeDock Installation..."
 
-# Detect Termux
-if [ -n "$TERMUX_VERSION" ] || command -v pkg &> /dev/null; then
-    echo "Termux detected. Checking dependencies..."
-    pkg update -y
-    pkg install -y nodejs git curl
-else
-    echo "Warning: This installer is primarily designed for Termux."
+# Check if npm is installed
+if ! command -v npm &> /dev/null; then
+    echo "❌ Error: npm is not installed. Please install nodejs first."
+    exit 1
 fi
 
-# Clone the repository
-REPO_URL="https://github.com/MythroniX24/CodeDock.git"
-CLONE_DIR="$HOME/CodeDock"
+echo "📦 Packing CodeDock..."
+# We use npm pack to create a tarball. 
+# Installing from a tarball forces NPM to COPY the files instead of creating a symlink
+# to the local directory (which breaks on Android storage due to permissions).
+TARBALL=$(npm pack --quiet)
 
-if [ -d "$CLONE_DIR" ]; then
-    echo "Directory $CLONE_DIR already exists. Updating..."
-    cd "$CLONE_DIR"
-    git pull
-else
-    echo "Cloning CodeDock repository..."
-    git clone "$REPO_URL" "$CLONE_DIR"
-    cd "$CLONE_DIR"
-fi
+echo "⚙️  Installing globally..."
+# Remove any existing broken installation
+npm uninstall -g codedock > /dev/null 2>&1 || true
 
-# Install dependencies globally
-echo "Installing CodeDock via npm..."
-npm install -g .
+# Install from the tarball
+npm install -g "./$TARBALL"
 
-# Verify installation
-if command -v codedock &> /dev/null; then
-    echo ""
-    echo "✅ CodeDock installed successfully!"
-    echo "Run 'codedock' in your terminal to start the manager."
-else
-    echo "⚠️ Installation finished, but 'codedock' command not found in PATH."
-    echo "Ensure your global npm bin directory is in your PATH."
-fi
+# Clean up
+rm "$TARBALL"
+
+echo "✨ Installation successful!"
+echo "Terminal: Type 'codedock' to launch the application."
