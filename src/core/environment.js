@@ -65,11 +65,15 @@ function getPackageManager() {
   return 'npm'; // Universal fallback
 }
 
+let _cachedSystemInfo = null;
+
 function getSystemInfo() {
-  return {
+  if (_cachedSystemInfo) return _cachedSystemInfo;
+  
+  _cachedSystemInfo = {
     isTermux: isTermux(),
     architecture: getArchitecture(),
-    arch: getArchitecture(),
+    arch: getArchitecture(), // Alias for backward compatibility
     os: os.platform(),
     platform: os.platform(),
     prefix: getPrefix(),
@@ -78,6 +82,8 @@ function getSystemInfo() {
     packageManager: getPackageManager(),
     nodeVersion: process.version,
   };
+  
+  return _cachedSystemInfo;
 }
 
 function checkPath() {

@@ -46,25 +46,60 @@ class ToolManager {
 
   async isToolInstalled(id) {
     const state = this.config.getToolState(id);
-    const verified = await this.verifyTool(id);
+    const tool = await this.getTool(id);
+    if (!tool) return false;
+
+    let verifyCmd = getVerifyCommand(tool);
+    if (!verifyCmd) return !!state.installed;
+    const baseCmd = verifyCmd.split(' ')[0];
     
-    // Auto-detect externally installed tools
-    if (verified && !state.installed) {
+    const sysInfo = getSystemInfo();
+    const isProot = this._needsProot(tool, sysInfo);
+    
+    let found = false;
+    
+    if (!isProot) {
+      // FAST PATH: Pure Node.js detection (0 shell spawns)
+      const fs = require('fs');
+      const path = require('path');
+      const isWin = sysInfo.os === 'win32';
+      
+      if (path.isAbsolute(baseCmd)) {
+        found = fs.existsSync(baseCmd);
+      } else {
+        const paths = (process.env.PATH || '').split(path.delimiter);
+        const exts = isWin ? ['.exe', '.cmd', '.bat', ''] : [''];
+        for (const p of paths) {
+          if (found) break;
+          for (const ext of exts) {
+            if (fs.existsSync(path.join(p, baseCmd + ext))) {
+              found = true;
+              break;
+            }
+          }
+        }
+      }
+    } else {
+      // For Proot tools, checking PATH inside Ubuntu takes 1-2s per tool.
+      // We trust CodeDock's internal state to avoid 10-second startups.
+      found = !!state.installed;
+    }
+    
+    // Auto-detect externally installed/uninstalled tools
+    if (found && !state.installed) {
       this.config.setToolState(id, {
         installed: true,
         installedAt: new Date().toISOString(),
-        proot: false
+        proot: isProot
       });
       return true;
     }
-    
-    // Auto-fix state if tool was uninstalled externally
-    if (!verified && state.installed) {
+    if (!found && state.installed) {
       this.config.setToolState(id, { installed: false, installedAt: null });
       return false;
     }
     
-    return verified;
+    return found;
   }
 
   async getStatus(id) {
@@ -201,9 +236,44 @@ class ToolManager {
 
     let verifyCmd = getVerifyCommand(tool);
     if (!verifyCmd) return true;
-
+    
     const sysInfo = getSystemInfo();
-    if (this._needsProot(tool, sysInfo)) {
+    const isWin = sysInfo.os === 'win32';
+    
+    // Fast path: Ultra-fast pure Node.js PATH check to avoid spawning 100+ shells
+    const baseCmd = verifyCmd.split(' ')[0];
+    const isProot = this._needsProot(tool, sysInfo);
+    
+    // We only fast-fail for non-proot commands (proot commands are inside a container so we can't easily check local PATH)
+    if (!isProot) {
+      let found = false;
+      const fs = require('fs');
+      const path = require('path');
+      
+      if (path.isAbsolute(baseCmd)) {
+        found = fs.existsSync(baseCmd);
+      } else {
+        const paths = (process.env.PATH || '').split(path.delimiter);
+        const exts = isWin ? ['.exe', '.cmd', '.bat', ''] : [''];
+        
+        for (const p of paths) {
+          if (found) break;
+          for (const ext of exts) {
+            if (fs.existsSync(path.join(p, baseCmd + ext))) {
+              found = true;
+              break;
+            }
+          }
+        }
+      }
+      
+      if (!found) {
+        // Base command not found in PATH, definitely not installed.
+        return false;
+      }
+    }
+
+    if (isProot) {
       verifyCmd = proot.wrapCommand(verifyCmd);
     }
 
@@ -211,7 +281,7 @@ class ToolManager {
       execSync(verifyCmd, {
         stdio: 'ignore',
         shell: true,
-        timeout: 15000,
+        timeout: 10000,
       });
       return true;
     } catch (_) {
