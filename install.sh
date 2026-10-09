@@ -30,5 +30,11 @@ npm install -g "./$TARBALL"
 # Clean up
 rm "$TARBALL"
 
+# Fix shebangs on Termux (prevents "bad interpreter" errors)
+if command -v termux-fix-shebang &> /dev/null; then
+    echo "🔧 Fixing Termux shebangs..."
+    termux-fix-shebang $(command -v codedock) || true
+fi
+
 echo "✨ Installation successful!"
 echo "Terminal: Type 'codedock' to launch the application."
