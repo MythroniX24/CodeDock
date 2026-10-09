@@ -6,24 +6,30 @@ const chalk = require('chalk');
 async function list(flags) {
   const toolManager = new ToolManager();
   const tools = await toolManager.getAllTools();
-  
-  console.log(chalk.bold.blue('\nCodeDock Tools:'));
-  console.log('='.repeat(40));
+  // Sort alphabetically
+  tools.sort((a, b) => a.name.localeCompare(b.name));
 
-  for (const tool of tools) {
-    const isInstalled = await toolManager.isToolInstalled(tool.id);
-    const statusColor = isInstalled ? chalk.green : chalk.gray;
-    const statusMark = isInstalled ? '✓' : '○';
-    
-    console.log(`${statusColor(statusMark)} ${chalk.bold(tool.name)} (${tool.id})`);
-    console.log(`  ${chalk.dim(tool.description)}`);
-    if (isInstalled) {
-      console.log(`  ${chalk.green('Status: Installed')}`);
-    } else {
-      console.log(`  ${chalk.yellow('Status: Available')}`);
-    }
-    console.log();
+  const installed = [];
+  const available = [];
+  
+  for (const t of tools) {
+    if (await toolManager.isToolInstalled(t.id)) installed.push(t);
+    else available.push(t);
   }
+  
+  if (installed.length > 0) {
+    console.log(chalk.cyan.bold('\n--- INSTALLED TOOLS ---'));
+    installed.forEach(t => console.log(`${chalk.green('✓')} ${chalk.bold(t.name)} (${t.id})\n  ${chalk.dim(t.description)}`));
+  }
+  
+  if (available.length > 0) {
+    console.log(chalk.gray.bold('\n--- AVAILABLE TOOLS ---'));
+    available.forEach(t => {
+      const star = t.popular ? chalk.yellow('★ ') : '';
+      console.log(`${chalk.gray('○')} ${star}${chalk.bold(t.name)} (${t.id})\n  ${chalk.dim(t.description)}`);
+    });
+  }
+  console.log();
 }
 
 module.exports = list;

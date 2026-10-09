@@ -35,13 +35,21 @@ async function showDashboard() {
     // Show installed tools summary
     const toolManager = new ToolManager();
     const tools = await toolManager.getAllTools();
-
-    console.log(chalk.bold('  Coding Tools'));
+    
+    const installedTools = [];
     for (const tool of tools) {
-      const installed = await toolManager.isToolInstalled(tool.id);
-      const mark = installed ? chalk.green('✓') : chalk.gray('○');
-      const status = installed ? chalk.green('Installed') : chalk.gray('Available');
-      console.log(`  ${mark} ${tool.name.padEnd(18)} ${status}`);
+      if (await toolManager.isToolInstalled(tool.id)) {
+        installedTools.push(tool);
+      }
+    }
+
+    console.log(chalk.bold(`  Installed Tools (${installedTools.length})`));
+    if (installedTools.length === 0) {
+      console.log(chalk.gray('  No tools installed yet. Go to Manage Tools to install.'));
+    } else {
+      for (const tool of installedTools) {
+        console.log(`  ${chalk.green('✓')} ${tool.name.padEnd(18)} ${chalk.green('Installed')}`);
+      }
     }
     console.log();
 
@@ -98,25 +106,65 @@ async function showDashboard() {
 }
 
 /**
- * Tool management submenu.
+ * Tool management submenu with search and categorization.
  */
 async function manageToolsMenu() {
+  const { autocompletePrompt } = require('./components');
   const toolManager = new ToolManager();
-  const tools = await toolManager.getAllTools();
-
-  const choices = [];
-  for (const tool of tools) {
-    const installed = await toolManager.isToolInstalled(tool.id);
-    const mark = installed ? chalk.green('✓') : chalk.gray('○');
-    choices.push({
-      name: `${mark} ${tool.name}`,
-      value: tool.id,
-    });
+  const allToolsRaw = await toolManager.getAllTools();
+  
+  // Sort alphabetically
+  allToolsRaw.sort((a, b) => a.name.localeCompare(b.name));
+  
+  // Determine tool status
+  const tools = [];
+  for (const t of allToolsRaw) {
+    const installed = await toolManager.isToolInstalled(t.id);
+    tools.push({ ...t, installed });
   }
-  choices.push(new inquirer.Separator());
-  choices.push({ name: '← Back', value: 'back' });
+  
+  const installedTools = tools.filter(t => t.installed);
+  const popularTools = tools.filter(t => !t.installed && t.popular);
+  const otherTools = tools.filter(t => !t.installed && !t.popular);
 
-  const selectedToolId = await selectPrompt('Select a tool:', choices);
+  const searchTools = (answers, input = '') => {
+    return new Promise((resolve) => {
+      const q = input.toLowerCase();
+      const results = [];
+      
+      // Filter function
+      const filterFn = t => t.name.toLowerCase().includes(q) || t.id.toLowerCase().includes(q) || t.description.toLowerCase().includes(q);
+      
+      const filteredInstalled = installedTools.filter(filterFn);
+      if (filteredInstalled.length > 0) {
+        results.push(new inquirer.Separator(chalk.cyan.bold('--- INSTALLED TOOLS ---')));
+        filteredInstalled.forEach(t => results.push({ name: `${chalk.green('✓')} ${t.name}`, value: t.id }));
+      }
+      
+      const filteredPopular = popularTools.filter(filterFn);
+      if (filteredPopular.length > 0) {
+        results.push(new inquirer.Separator(chalk.yellow.bold('--- POPULAR TOOLS ---')));
+        filteredPopular.forEach(t => results.push({ name: `${chalk.gray('○')} ${t.name}`, value: t.id }));
+      }
+      
+      const filteredOther = otherTools.filter(filterFn);
+      if (filteredOther.length > 0) {
+        results.push(new inquirer.Separator(chalk.bold('--- ALL TOOLS (A-Z) ---')));
+        filteredOther.forEach(t => results.push({ name: `${chalk.gray('○')} ${t.name}`, value: t.id }));
+      }
+      
+      if (results.length === 0) {
+        results.push(new inquirer.Separator(chalk.red('No tools found matching your search.')));
+      }
+      
+      results.push(new inquirer.Separator(' '));
+      results.push({ name: '← Back', value: 'back' });
+      
+      resolve(results);
+    });
+  };
+
+  const selectedToolId = await autocompletePrompt('Search or select a tool to manage:', searchTools);
   if (selectedToolId === 'back') return;
 
   const installed = await toolManager.isToolInstalled(selectedToolId);

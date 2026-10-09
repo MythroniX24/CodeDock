@@ -10,7 +10,17 @@
     "start": "node bin/codedock",
     "test": "node tests/run.js"
   },
-  "keywords": ["termux", "cli", "coding", "ai", "tools", "manager", "claude", "codex", "gemini"],
+  "keywords": [
+    "termux",
+    "cli",
+    "coding",
+    "ai",
+    "tools",
+    "manager",
+    "claude",
+    "codex",
+    "gemini"
+  ],
   "author": "CodeDock Contributors",
   "license": "MIT",
   "engines": {
@@ -19,6 +29,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "inquirer": "^8.2.6",
+    "inquirer-autocomplete-prompt": "^2.0.0",
     "ora": "^5.4.1",
     "semver": "^7.6.0"
   },

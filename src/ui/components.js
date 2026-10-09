@@ -57,6 +57,24 @@ async function inputPrompt(message, defaultVal = '') {
   return input;
 }
 
+// Ensure autocomplete is registered
+try {
+  inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
+} catch (e) {
+  // Graceful degradation if plugin fails
+}
+
+async function autocompletePrompt(message, source) {
+  const { selection } = await inquirer.prompt([{
+    type: 'autocomplete',
+    name: 'selection',
+    message,
+    source,
+    pageSize: 15
+  }]);
+  return selection;
+}
+
 function progressBar(current, total, width = 20) {
   const percent = Math.min(1, current / total);
   const filled = Math.round(width * percent);
@@ -88,6 +106,7 @@ module.exports = {
   confirmPrompt,
   selectPrompt,
   inputPrompt,
+  autocompletePrompt,
   progressBar,
   box,
   divider
