@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const https = require('https');
 const { execSync } = require('child_process');
 const path = require('path');
@@ -22,7 +23,7 @@ function isNewerVersion(remote, local) {
   return false;
 }
 
-function fetchLatestVersion() {
+function fetchLatestVersion(force) {
   return new Promise((resolve) => {
     const req = https.get(GITHUB_PACKAGE_URL, (res) => {
       let data = '';
@@ -42,7 +43,7 @@ function fetchLatestVersion() {
     });
     
     req.on('error', () => resolve(null));
-    req.setTimeout(5000, () => {
+    req.setTimeout(force ? 5000 : 1200, () => {
       req.destroy();
       resolve(null);
     });
@@ -65,11 +66,13 @@ async function checkAndAutoUpdate(force = false) {
     return false; // No check needed
   }
   
-  const localPkg = require('../../package.json');
+  // Read package.json dynamically to avoid module cache when upgrading twice in one session
+  const pkgPath = path.join(__dirname, '..', '..', 'package.json');
+  const localPkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
   const localVersion = localPkg.version;
   
   // We'll quickly check in the background/inline
-  const remoteVersion = await fetchLatestVersion();
+  const remoteVersion = await fetchLatestVersion(force);
   
   // Save check time regardless of success to avoid spamming network on offline devices
   config.set('lastUpdateCheck', now);
@@ -81,13 +84,16 @@ async function checkAndAutoUpdate(force = false) {
     
     try {
       // Auto-Heal: Remove any broken symlinks (from local installs) that cause ENOTDIR crashes
-      const fs = require('fs');
       const { getPrefix } = require('./environment');
       const prefix = getPrefix();
       if (prefix) {
         const globalDir = path.join(prefix, 'lib', 'node_modules', 'codedock');
-        if (fs.existsSync(globalDir) && fs.lstatSync(globalDir).isSymbolicLink()) {
-          fs.rmSync(globalDir, { recursive: true, force: true });
+        try {
+          if (fs.lstatSync(globalDir).isSymbolicLink()) {
+            fs.rmSync(globalDir, { recursive: true, force: true });
+          }
+        } catch (e) {
+          // ignore if it doesn't exist
         }
       }
       
