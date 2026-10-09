@@ -17,6 +17,15 @@ const pkg = require('../package.json'); // assuming package.json is in root
 
 async function main() {
   try {
+    const { checkAndAutoUpdate } = require('./core/updater');
+    const wasUpdated = await checkAndAutoUpdate();
+    if (wasUpdated) {
+      // Re-spawn the newly installed global process and exit this old process
+      const { spawnSync } = require('child_process');
+      spawnSync('codedock', process.argv.slice(2), { stdio: 'inherit', shell: true });
+      return;
+    }
+
     const { command, args, flags } = parse(process.argv);
 
     if (flags.version) {
