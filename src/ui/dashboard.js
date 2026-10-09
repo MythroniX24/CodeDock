@@ -11,6 +11,7 @@ const { showSettings } = require('./settings');
 const { Environment } = require('../core/environment');
 const config = require('../core/config');
 const ToolManager = require('../tools/manager');
+const { getTheme } = require('./theme');
 
 // Commands
 const install = require('../commands/install');
@@ -28,6 +29,7 @@ async function showDashboard() {
   const envInfo = await env.getInfo();
 
   while (true) {
+    const t = getTheme();
     console.clear();
     banner();
     await systemInfoBlock(envInfo);
@@ -43,31 +45,31 @@ async function showDashboard() {
       }
     }
 
-    console.log(chalk.bold(`  Installed Tools (${installedTools.length})`));
+    console.log(t.secondary.bold(`  Installed Tools (${installedTools.length})`));
     if (installedTools.length === 0) {
-      console.log(chalk.gray('  No tools installed yet. Go to Manage Tools to install.'));
+      console.log(t.muted('  No tools installed yet. Go to Manage Tools to install.'));
     } else {
       for (const tool of installedTools) {
-        console.log(`  ${chalk.green('✓')} ${tool.name.padEnd(18)} ${chalk.green('Installed')}`);
+        console.log(`  ${t.success('✓')} ${t.text(tool.name.padEnd(18))} ${t.success('Installed')}`);
       }
     }
     console.log();
 
     const choices = [
-      { name: '📦 Manage Tools', value: 'tools' },
-      { name: '📁 Projects', value: 'projects' },
-      { name: '🔧 Dependencies', value: 'deps' },
-      { name: '🔄 Check Updates', value: 'updates' },
-      { name: '🏥 Run Doctor', value: 'doctor' },
-      { name: '⚙️  Settings', value: 'settings' },
+      { name: t.text('📦 Manage Tools'), value: 'tools' },
+      { name: t.text('📁 Projects'), value: 'projects' },
+      { name: t.text('🔧 Dependencies'), value: 'deps' },
+      { name: t.text('🔄 Check Updates'), value: 'updates' },
+      { name: t.text('🏥 Run Doctor'), value: 'doctor' },
+      { name: t.text('⚙️  Settings'), value: 'settings' },
       new inquirer.Separator(),
-      { name: '❌ Exit', value: 'exit' },
+      { name: t.error('❌ Exit'), value: 'exit' },
     ];
 
-    const action = await selectPrompt('Main Menu', choices);
+    const action = await selectPrompt(t.text('Main Menu'), choices);
 
     if (action === 'exit') {
-      console.log(chalk.gray('\nGoodbye!\n'));
+      console.log(t.muted('\nGoodbye!\n'));
       process.exit(0);
     }
 
@@ -93,14 +95,14 @@ async function showDashboard() {
           break;
       }
     } catch (error) {
-      console.error(chalk.red(`\nError: ${error.message}\n`));
+      console.error(t.error(`\nError: ${error.message}\n`));
     }
 
     // Pause before returning to dashboard
     await inquirer.prompt([{
       type: 'input',
       name: 'continue',
-      message: chalk.gray('Press Enter to return to dashboard...'),
+      message: t.muted('Press Enter to return to dashboard...'),
     }]);
   }
 }
@@ -110,6 +112,7 @@ async function showDashboard() {
  */
 async function manageToolsMenu() {
   const { autocompletePrompt } = require('./components');
+  const t = getTheme();
   const toolManager = new ToolManager();
   const allToolsRaw = await toolManager.getAllTools();
   
@@ -118,14 +121,14 @@ async function manageToolsMenu() {
   
   // Determine tool status
   const tools = [];
-  for (const t of allToolsRaw) {
-    const installed = await toolManager.isToolInstalled(t.id);
-    tools.push({ ...t, installed });
+  for (const tool of allToolsRaw) {
+    const installed = await toolManager.isToolInstalled(tool.id);
+    tools.push({ ...tool, installed });
   }
   
-  const installedTools = tools.filter(t => t.installed);
-  const popularTools = tools.filter(t => !t.installed && t.popular);
-  const otherTools = tools.filter(t => !t.installed && !t.popular);
+  const installedTools = tools.filter(tool => tool.installed);
+  const popularTools = tools.filter(tool => !tool.installed && tool.popular);
+  const otherTools = tools.filter(tool => !tool.installed && !tool.popular);
 
   const searchTools = (answers, input = '') => {
     return new Promise((resolve) => {
@@ -133,38 +136,38 @@ async function manageToolsMenu() {
       const results = [];
       
       // Filter function
-      const filterFn = t => t.name.toLowerCase().includes(q) || t.id.toLowerCase().includes(q) || t.description.toLowerCase().includes(q);
+      const filterFn = tool => tool.name.toLowerCase().includes(q) || tool.id.toLowerCase().includes(q) || tool.description.toLowerCase().includes(q);
       
       const filteredInstalled = installedTools.filter(filterFn);
       if (filteredInstalled.length > 0) {
-        results.push(new inquirer.Separator(chalk.cyan.bold('--- INSTALLED TOOLS ---')));
-        filteredInstalled.forEach(t => results.push({ name: `${chalk.green('✓')} ${t.name}`, value: t.id }));
+        results.push(new inquirer.Separator(t.primary.bold('--- INSTALLED TOOLS ---')));
+        filteredInstalled.forEach(tool => results.push({ name: `${t.success('✓')} ${t.text(tool.name)}`, value: tool.id }));
       }
       
       const filteredPopular = popularTools.filter(filterFn);
       if (filteredPopular.length > 0) {
-        results.push(new inquirer.Separator(chalk.yellow.bold('--- POPULAR TOOLS ---')));
-        filteredPopular.forEach(t => results.push({ name: `${chalk.gray('○')} ${t.name}`, value: t.id }));
+        results.push(new inquirer.Separator(t.secondary.bold('--- POPULAR TOOLS ---')));
+        filteredPopular.forEach(tool => results.push({ name: `${t.muted('○')} ${t.text(tool.name)}`, value: tool.id }));
       }
       
       const filteredOther = otherTools.filter(filterFn);
       if (filteredOther.length > 0) {
-        results.push(new inquirer.Separator(chalk.bold('--- ALL TOOLS (A-Z) ---')));
-        filteredOther.forEach(t => results.push({ name: `${chalk.gray('○')} ${t.name}`, value: t.id }));
+        results.push(new inquirer.Separator(t.text.bold('--- ALL TOOLS (A-Z) ---')));
+        filteredOther.forEach(tool => results.push({ name: `${t.muted('○')} ${t.text(tool.name)}`, value: tool.id }));
       }
       
       if (results.length === 0) {
-        results.push(new inquirer.Separator(chalk.red('No tools found matching your search.')));
+        results.push(new inquirer.Separator(t.error('No tools found matching your search.')));
       }
       
       results.push(new inquirer.Separator(' '));
-      results.push({ name: '← Back', value: 'back' });
+      results.push({ name: t.muted('← Back'), value: 'back' });
       
       resolve(results);
     });
   };
 
-  const selectedToolId = await autocompletePrompt('Search or select a tool to manage:', searchTools);
+  const selectedToolId = await autocompletePrompt(t.text('Search or select a tool to manage:'), searchTools);
   if (selectedToolId === 'back') return;
 
   const installed = await toolManager.isToolInstalled(selectedToolId);
@@ -172,16 +175,16 @@ async function manageToolsMenu() {
   const actions = [];
 
   if (installed) {
-    actions.push({ name: `🚀 Open ${tool.name}`, value: 'open' });
-    actions.push({ name: '🔄 Update', value: 'update' });
-    actions.push({ name: '🗑️  Uninstall', value: 'uninstall' });
+    actions.push({ name: t.success(`🚀 Open ${tool.name}`), value: 'open' });
+    actions.push({ name: t.text('🔄 Update'), value: 'update' });
+    actions.push({ name: t.error('🗑️  Uninstall'), value: 'uninstall' });
   } else {
-    actions.push({ name: `📥 Install ${tool.name}`, value: 'install' });
+    actions.push({ name: t.success(`📥 Install ${tool.name}`), value: 'install' });
   }
   actions.push(new inquirer.Separator());
-  actions.push({ name: '← Back', value: 'back' });
+  actions.push({ name: t.muted('← Back'), value: 'back' });
 
-  const toolAction = await selectPrompt(`Action for ${tool.name}:`, actions);
+  const toolAction = await selectPrompt(t.text(`Action for ${tool.name}:`), actions);
 
   switch (toolAction) {
     case 'install':
@@ -205,14 +208,15 @@ async function manageToolsMenu() {
 async function showDependencies() {
   const DependencyManager = require('../dependencies/manager');
   const depManager = new DependencyManager();
+  const t = getTheme();
 
-  console.log(chalk.bold.blue('\n  Dependencies Status\n'));
+  console.log(t.secondary.bold('\n  Dependencies Status\n'));
 
   const allDeps = depManager.getAll();
   for (const [name, info] of Object.entries(allDeps)) {
-    const mark = info.installed ? chalk.green('✓') : chalk.red('✗');
-    const ver = info.version ? chalk.gray(`v${info.version}`) : '';
-    console.log(`  ${mark} ${name.padEnd(18)} ${ver}`);
+    const mark = info.installed ? t.success('✓') : t.error('✗');
+    const ver = info.version ? t.muted(`v${info.version}`) : '';
+    console.log(`  ${mark} ${t.text(name.padEnd(18))} ${ver}`);
   }
   console.log();
 }

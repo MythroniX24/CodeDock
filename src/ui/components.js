@@ -1,44 +1,35 @@
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const Config = require('../core/config');
+const { getTheme } = require('./theme');
 
 // Components
 function banner() {
   const pkg = require('../../package.json');
   const v = pkg.version || '1.0.0';
-  const theme = Config.get('theme', 'default');
-  
-  let primary = chalk.cyan;
-  let secondary = chalk.blue.bold;
-  let text = chalk.white;
-  
-  if (theme === 'hacker') {
-    primary = chalk.green;
-    secondary = chalk.green.bold;
-    text = chalk.green;
-  } else if (theme === 'cyberpunk') {
-    primary = chalk.magenta;
-    secondary = chalk.yellow.bold;
-    text = chalk.cyan;
-  }
+  const t = getTheme();
   
   console.log('');
-  console.log(primary('  ╭────────────────────────────────────╮'));
-  console.log(primary('  │') + '  ' + secondary('C O D E D O C K') + ' '.repeat(16 - v.length) + chalk.gray('v' + v) + '  ' + primary('│'));
-  console.log(primary('  │') + '  ' + text('Termux Coding Tools Manager') + ' '.repeat(7) + primary('│'));
-  console.log(primary('  ╰────────────────────────────────────╯'));
+  console.log(t.border('  ╭──────────────────────────────────────╮'));
+  console.log(t.border('  │') + '  ' + t.secondary.bold('C O D E D O C K') + ' '.repeat(17 - v.length) + t.muted('v' + v) + '   ' + t.border('│'));
+  console.log(t.border('  │') + '  ' + t.text('Termux Coding Tools Manager') + ' '.repeat(6) + t.border('│'));
+  console.log(t.border('  ╰──────────────────────────────────────╯'));
   console.log('');
 }
 
 function toolStatusLine(tool, isInstalled) {
-  const status = isInstalled ? chalk.green('[Installed]') : chalk.gray('[Available]');
-  return `${status.padEnd(20)} ${tool.name}`;
+  const t = getTheme();
+  const status = isInstalled ? t.success('[Installed]') : t.muted('[Available]');
+  return `${status.padEnd(20)} ${t.text(tool.name)}`;
 }
 
 async function systemInfoBlock(envInfo) {
-  console.log(chalk.bold('System Info:'));
-  console.log(`  OS: ${envInfo.os} | Arch: ${envInfo.arch}`);
-  console.log(`  Termux: ${envInfo.isTermux ? chalk.green('Yes') : chalk.red('No')}\n`);
+  const t = getTheme();
+  
+  console.log(t.border('╭─') + t.secondary(' System Info ') + t.border('────────────────────────╮'));
+  console.log(t.border('│ ') + t.text('OS:     ') + t.primary(envInfo.os.padEnd(10)) + t.text(' Arch: ') + t.primary(envInfo.arch.padEnd(8)) + t.border('│'));
+  console.log(t.border('│ ') + t.text('Termux: ') + (envInfo.isTermux ? t.success('Yes'.padEnd(10)) : t.error('No '.padEnd(10))) + t.text(' Pkg:  ') + t.primary((envInfo.packageManager || 'npm').padEnd(8)) + t.border('│'));
+  console.log(t.border('╰──────────────────────────────────────╯\n'));
 }
 
 async function confirmPrompt(message) {
@@ -91,27 +82,30 @@ async function autocompletePrompt(message, source) {
 }
 
 function progressBar(current, total, width = 20) {
+  const t = getTheme();
   const percent = Math.min(1, current / total);
   const filled = Math.round(width * percent);
   const empty = width - filled;
-  return '█'.repeat(filled) + '░'.repeat(empty);
+  return t.primary('█'.repeat(filled)) + t.muted('░'.repeat(empty));
 }
 
 function box(content, width = 40) {
+  const t = getTheme();
   const lines = content.split('\n');
-  const top = '┌' + '─'.repeat(width) + '┐';
-  const bottom = '└' + '─'.repeat(width) + '┘';
+  const top = t.border('┌' + '─'.repeat(width) + '┐');
+  const bottom = t.border('└' + '─'.repeat(width) + '┘');
   
   console.log(top);
   lines.forEach(line => {
     const padLength = width - line.replace(/\u001b\[\d+m/g, '').length;
-    console.log(`│${line}${ ' '.repeat(Math.max(0, padLength))}│`);
+    console.log(t.border('│') + line + ' '.repeat(Math.max(0, padLength)) + t.border('│'));
   });
   console.log(bottom);
 }
 
 function divider(char = '─', width = 40) {
-  console.log(chalk.gray(char.repeat(width)));
+  const t = getTheme();
+  console.log(t.border(char.repeat(width)));
 }
 
 module.exports = {

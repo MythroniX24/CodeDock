@@ -1,24 +1,26 @@
 const { selectPrompt, inputPrompt, confirmPrompt } = require('./components');
 const chalk = require('chalk');
+const { getTheme } = require('./theme');
 
 async function showSettings(config) {
   while (true) {
+    const t = getTheme();
     console.clear();
-    console.log(chalk.bold.blue('\nCodeDock Settings\n'));
+    console.log(t.secondary.bold('\nCodeDock Settings\n'));
     
     const currentConfig = config.getAll();
     
     const choices = [
-      { name: `🔑 API Key Vault`, value: 'apiVault' },
-      { name: `🎨 UI Theme: ${currentConfig.theme || 'default'}`, value: 'theme' },
-      { name: `📂 Default Project Dir: ${currentConfig.defaultProjectDir || '~/Projects'}`, value: 'defaultProjectDir' },
-      { name: `🔄 Auto-Update: ${currentConfig.autoUpdate ? 'On' : 'Off'}`, value: 'autoUpdate' },
-      { name: `📝 Log Level: ${currentConfig.logLevel || 'info'}`, value: 'logLevel' },
+      { name: t.text(`🔑 API Key Vault`), value: 'apiVault' },
+      { name: t.text(`🎨 UI Theme: `) + t.primary(currentConfig.theme || 'default'), value: 'theme' },
+      { name: t.text(`📂 Default Project Dir: `) + t.primary(currentConfig.defaultProjectDir || '~/Projects'), value: 'defaultProjectDir' },
+      { name: t.text(`🔄 Auto-Update: `) + t.primary(currentConfig.autoUpdate ? 'On' : 'Off'), value: 'autoUpdate' },
+      { name: t.text(`📝 Log Level: `) + t.primary(currentConfig.logLevel || 'info'), value: 'logLevel' },
       new (require('inquirer')).Separator(),
-      { name: '← Back', value: 'back' }
+      { name: t.muted('← Back'), value: 'back' }
     ];
     
-    const setting = await selectPrompt('Select setting to change:', choices);
+    const setting = await selectPrompt(t.text('Select setting to change:'), choices);
     
     if (setting === 'back') break;
     
@@ -26,22 +28,22 @@ async function showSettings(config) {
       await manageApiKeys(config);
       continue;
     } else if (setting === 'theme') {
-      const val = await selectPrompt('Select UI Theme:', ['default', 'hacker', 'cyberpunk']);
+      const val = await selectPrompt(t.text('Select UI Theme:'), ['default', 'hacker', 'cyberpunk', 'dracula']);
       config.set('theme', val);
     } else if (setting === 'defaultProjectDir') {
-      const val = await inputPrompt('Enter new default project directory:', currentConfig.defaultProjectDir);
+      const val = await inputPrompt(t.text('Enter new default project directory:'), currentConfig.defaultProjectDir);
       config.set('defaultProjectDir', val);
     } else if (setting === 'autoUpdate') {
-      const val = await confirmPrompt('Enable auto-updates?');
+      const val = await confirmPrompt(t.text('Enable auto-updates?'));
       config.set('autoUpdate', val);
     } else if (setting === 'logLevel') {
-      const val = await selectPrompt('Select log level:', ['debug', 'info', 'warn', 'error']);
+      const val = await selectPrompt(t.text('Select log level:'), ['debug', 'info', 'warn', 'error']);
       config.set('logLevel', val);
     }
     
     config.save();
-    console.log(chalk.green('Settings saved.'));
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log(t.success('Settings saved.'));
+    await new Promise(resolve => setTimeout(resolve, 800));
   }
 }
 
