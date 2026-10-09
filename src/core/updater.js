@@ -49,12 +49,19 @@ function fetchLatestVersion() {
   });
 }
 
-async function checkAndAutoUpdate() {
+async function checkAndAutoUpdate(force = false) {
+  // Respect the user's auto-update setting (defaults to true)
+  const isAutoUpdateEnabled = config.get('autoUpdate') !== false;
+  
+  if (!isAutoUpdateEnabled && !force) {
+    return false;
+  }
+
   const lastCheck = config.get('lastUpdateCheck', 0);
   const now = Date.now();
   
-  // Only check every 12 hours to keep startup instant
-  if (now - lastCheck < UPDATE_INTERVAL_MS) {
+  // Only check every 12 hours to keep startup instant, unless forced
+  if (!force && now - lastCheck < UPDATE_INTERVAL_MS) {
     return false; // No check needed
   }
   

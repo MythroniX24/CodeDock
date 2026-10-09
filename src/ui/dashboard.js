@@ -62,7 +62,8 @@ async function showDashboard() {
       { name: t.text('📦 Manage Tools'), value: 'tools' },
       { name: t.text('📁 Projects'), value: 'projects' },
       { name: t.text('🔧 Dependencies'), value: 'deps' },
-      { name: t.text('🔄 Check Updates'), value: 'updates' },
+      { name: t.text('🔄 Update Tools'), value: 'updates' },
+      { name: t.primary('🚀 Upgrade CodeDock'), value: 'upgrade' },
       { name: t.text('🏥 Run Doctor'), value: 'doctor' },
       { name: t.text('⚙️  Settings'), value: 'settings' },
       new inquirer.Separator(),
@@ -89,6 +90,10 @@ async function showDashboard() {
           break;
         case 'updates':
           await update(null, {});
+          break;
+        case 'upgrade':
+          const upgradeCmd = require('../commands/upgrade');
+          await upgradeCmd();
           break;
         case 'doctor':
           await doctor({});

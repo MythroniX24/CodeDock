@@ -14,13 +14,14 @@ const projects = require('./commands/projects');
 const help = require('./commands/help');
 const clean = require('./commands/clean');
 const alias = require('./commands/alias');
+const upgrade = require('./commands/upgrade');
 
 const pkg = require('../package.json'); // assuming package.json is in root
 
 async function main() {
   try {
     const { checkAndAutoUpdate } = require('./core/updater');
-    const wasUpdated = await checkAndAutoUpdate();
+    const wasUpdated = await checkAndAutoUpdate(false);
     if (wasUpdated) {
       // Re-spawn the newly installed global process and exit this old process
       const { spawnSync } = require('child_process');
@@ -49,6 +50,9 @@ async function main() {
         break;
       case 'update':
         await update(args[0], flags);
+        break;
+      case 'upgrade':
+        await upgrade();
         break;
       case 'doctor':
         await doctor(flags);
