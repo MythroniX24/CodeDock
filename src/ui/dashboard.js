@@ -19,6 +19,7 @@ const update = require('../commands/update');
 const doctor = require('../commands/doctor');
 const open = require('../commands/open');
 const projects = require('../commands/projects');
+const upgradeCmd = require('../commands/upgrade');
 
 /**
  * Show the main CodeDock dashboard with interactive navigation.
@@ -92,8 +93,9 @@ async function showDashboard() {
           await update(null, {});
           break;
         case 'upgrade':
-          const upgradeCmd = require('../commands/upgrade');
-          await upgradeCmd();
+          if (await upgradeCmd()) {
+            process.exit(0);
+          }
           break;
         case 'doctor':
           await doctor({});

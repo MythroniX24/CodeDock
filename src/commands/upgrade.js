@@ -16,6 +16,8 @@ async function upgrade() {
   } else {
     logger.step('CodeDock is already up to date!');
   }
+  
+  return wasUpdated;
 }
 
 module.exports = upgrade;
