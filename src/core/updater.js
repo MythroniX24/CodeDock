@@ -10,12 +10,12 @@ const GITHUB_PACKAGE_URL = 'https://raw.githubusercontent.com/MythroniX24/CodeDo
 const UPDATE_INTERVAL_MS = 12 * 60 * 60 * 1000; // 12 hours
 
 function isNewerVersion(remote, local) {
-  const rParts = remote.split('.').map(Number);
-  const lParts = local.split('.').map(Number);
+  const rParts = remote.split('.').map(s => parseInt(s, 10));
+  const lParts = local.split('.').map(s => parseInt(s, 10));
   
   for (let i = 0; i < Math.max(rParts.length, lParts.length); i++) {
-    const r = rParts[i] || 0;
-    const l = lParts[i] || 0;
+    const r = isNaN(rParts[i]) ? 0 : rParts[i];
+    const l = isNaN(lParts[i]) ? 0 : lParts[i];
     if (r > l) return true;
     if (r < l) return false;
   }
