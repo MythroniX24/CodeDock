@@ -131,11 +131,14 @@ class ToolManager {
       installCmd = proot.wrapCommand(installCmd);
     }
 
+    const healer = require('./healer');
+    
     logger.info(`Running: ${installCmd}`);
     try {
-      execSync(installCmd, { stdio: 'inherit', shell: true, timeout: 600000 });
+      // Execute using the advanced Auto-Healing system
+      healer.executeWithHealing(installCmd, 2);
     } catch (err) {
-      throw new Error(`Install command failed for ${tool.name}`);
+      throw new Error(`Installation failed for ${tool.name}: ${err.message}`);
     }
 
     const verified = await this.verifyTool(id);

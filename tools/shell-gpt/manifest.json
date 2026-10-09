@@ -1,0 +1,41 @@
+{
+  "id": "shell-gpt",
+  "name": "Shell GPT (sgpt)",
+  "command": "sgpt",
+  "description": "A command-line productivity tool powered by AI.",
+  "homepage": "https://github.com/TheR1D/shell_gpt",
+  "category": "cli-assistant",
+  "aliases": ["sgpt"],
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "pip install shell-gpt"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "pip uninstall -y shell-gpt"
+  },
+  "update": {
+    "method": "shell",
+    "command": "pip install --upgrade shell-gpt"
+  },
+  "dependencies": [
+    { "name": "python", "minVersion": "3.8.0", "required": true },
+    { "name": "pip", "required": true }
+  ],
+  "architectures": ["aarch64", "x86_64", "armv7l", "i686"],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "sgpt",
+    "args": ["--version"]
+  },
+  "launcher": {
+    "command": "sgpt",
+    "args": ["--chat", "default"],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

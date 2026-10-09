@@ -1,0 +1,41 @@
+{
+  "id": "gorilla-cli",
+  "name": "Gorilla CLI",
+  "command": "gorilla",
+  "description": "LLMs for CLI. Gorilla translates natural language to CLI commands.",
+  "homepage": "https://github.com/gorilla-llm/gorilla-cli",
+  "category": "cli-assistant",
+  "aliases": ["gorilla"],
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "pip install gorilla-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "pip uninstall -y gorilla-cli"
+  },
+  "update": {
+    "method": "shell",
+    "command": "pip install --upgrade gorilla-cli"
+  },
+  "dependencies": [
+    { "name": "python", "minVersion": "3.8.0", "required": true },
+    { "name": "pip", "required": true }
+  ],
+  "architectures": ["aarch64", "x86_64", "armv7l", "i686"],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "gorilla",
+    "args": ["--version"]
+  },
+  "launcher": {
+    "command": "gorilla",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

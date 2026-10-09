@@ -1,0 +1,42 @@
+{
+  "id": "gpt-engineer",
+  "name": "GPT Engineer",
+  "command": "gpt-engineer",
+  "description": "Specify what you want it to build, the AI asks for clarification, and then builds it.",
+  "homepage": "https://github.com/gpt-engineer-org/gpt-engineer",
+  "category": "ai-coding-agent",
+  "aliases": ["gpte"],
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "pip install gpt-engineer"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "pip uninstall -y gpt-engineer"
+  },
+  "update": {
+    "method": "shell",
+    "command": "pip install --upgrade gpt-engineer"
+  },
+  "dependencies": [
+    { "name": "python", "minVersion": "3.8.0", "required": true },
+    { "name": "pip", "required": true }
+  ],
+  "architectures": ["aarch64", "x86_64", "armv7l", "i686"],
+  "compatibility": {
+    "termux": true,
+    "termuxNotes": "May require clang/make for some dependencies."
+  },
+  "verification": {
+    "command": "gpt-engineer",
+    "args": ["--version"]
+  },
+  "launcher": {
+    "command": "gpt-engineer",
+    "args": ["."],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "aider",
+  "name": "Aider",
+  "command": "aider",
+  "description": "AI pair programming in your terminal (Python)",
+  "homepage": "https://aider.chat/",
+  "category": "ai-coding-agent",
+  "aliases": ["aider-chat"],
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "pip install aider-chat"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "pip uninstall -y aider-chat"
+  },
+  "update": {
+    "method": "shell",
+    "command": "pip install --upgrade aider-chat"
+  },
+  "dependencies": [
+    { "name": "python", "minVersion": "3.8.0", "required": true },
+    { "name": "pip", "required": true },
+    { "name": "git", "required": true }
+  ],
+  "architectures": ["aarch64", "x86_64", "armv7l", "i686"],
+  "compatibility": {
+    "termux": true,
+    "termuxNotes": "Python is required."
+  },
+  "verification": {
+    "command": "aider",
+    "args": ["--version"]
+  },
+  "launcher": {
+    "command": "aider",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

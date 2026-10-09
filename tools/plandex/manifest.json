@@ -1,0 +1,41 @@
+{
+  "id": "plandex",
+  "name": "Plandex",
+  "command": "plandex",
+  "description": "An AI coding engine for complex tasks. It builds large applications in the terminal.",
+  "homepage": "https://plandex.ai/",
+  "category": "ai-coding-agent",
+  "aliases": ["plandex-ai"],
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "curl -sL https://plandex.ai/install.sh | bash"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "rm -f /usr/local/bin/plandex || rm -f ~/.local/bin/plandex"
+  },
+  "update": {
+    "method": "shell",
+    "command": "plandex update"
+  },
+  "dependencies": [
+    { "name": "curl", "required": true }
+  ],
+  "architectures": ["aarch64", "x86_64"],
+  "compatibility": {
+    "termux": "proot",
+    "termuxNotes": "Plandex distributes native Linux binaries. CodeDock will manage this via proot-distro."
+  },
+  "verification": {
+    "command": "plandex",
+    "args": ["version"]
+  },
+  "launcher": {
+    "command": "plandex",
+    "args": ["load"],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}
