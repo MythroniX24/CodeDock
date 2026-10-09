@@ -83,33 +83,47 @@ async function checkAndAutoUpdate(force = false) {
     logger.info('Auto-updating CodeDock from GitHub...');
     
     try {
-      // Auto-Heal: Completely remove the old installation directory before upgrading.
-      // This universally prevents npm's infamous "ENOTEMPTY", "ENOTDIR", and "EPERM" staging rename bugs.
+      const os = require('os');
+      const { spawn } = require('child_process');
       const { getPrefix } = require('./environment');
-      const prefix = getPrefix();
-      if (prefix) {
-        const globalDir = path.join(prefix, 'lib', 'node_modules', 'codedock');
-        try {
-          fs.rmSync(globalDir, { recursive: true, force: true });
-        } catch (e) {
-          // Ignore if it doesn't exist or cannot be removed
-        }
-      }
       
-      // Run the update
-      execSync('npm install -g MythroniX24/CodeDock', { stdio: 'inherit', shell: true });
+      const tmpDir = os.tmpdir();
+      const scriptPath = path.join(tmpDir, 'codedock_updater.sh');
+      const prefix = getPrefix() || '/usr/local';
       
-      logger.success('\n✅ CodeDock automatically updated to the latest version!');
-      logger.info('Restarting CodeDock to apply updates...\n');
+      const scriptContent = `#!/bin/bash
+echo "Waiting for CodeDock to close..."
+sleep 2
+
+echo "🧹 Cleaning up old installation..."
+rm -rf "${prefix}/lib/node_modules/codedock"
+
+echo "🚀 Installing latest CodeDock from GitHub..."
+npm install -g MythroniX24/CodeDock
+
+echo "✨ Update complete! Launching CodeDock..."
+codedock
+`;
       
-      // Bump the local config version if we track it, though it's read from package.json
+      fs.writeFileSync(scriptPath, scriptContent, { mode: 0o755 });
       
-      return true; // Indicates update occurred
+      logger.info('Restarting CodeDock to apply updates in a detached process...\n');
+      
+      // Spawn the script completely detached
+      const child = spawn('bash', [scriptPath], {
+        detached: true,
+        stdio: 'inherit'
+      });
+      
+      child.unref();
+      
+      // We must exit the current process so the file locks are released!
+      process.exit(0);
+      
     } catch (err) {
-      logger.error(`\n❌ Auto-update failed: ${err.message}`);
+      logger.error(`\n❌ Auto-update failed to start: ${err.message}`);
       logger.info('You can manually update by running: npm install -g MythroniX24/CodeDock');
       logger.blank();
-      // Continue anyway
       return false;
     }
   }

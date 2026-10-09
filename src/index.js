@@ -25,13 +25,7 @@ async function main() {
     // Skip background auto-update if the user explicitly requested a manual upgrade
     if (command !== 'upgrade') {
       const { checkAndAutoUpdate } = require('./core/updater');
-      const wasUpdated = await checkAndAutoUpdate(false);
-      if (wasUpdated) {
-        // Re-spawn the newly installed global process and exit this old process
-        const { spawnSync } = require('child_process');
-        spawnSync('codedock', process.argv.slice(2), { stdio: 'inherit' });
-        return;
-      }
+      await checkAndAutoUpdate(false);
     }
 
     if (flags.version) {
