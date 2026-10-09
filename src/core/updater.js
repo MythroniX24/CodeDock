@@ -73,6 +73,18 @@ async function checkAndAutoUpdate() {
     logger.info('Auto-updating CodeDock from GitHub...');
     
     try {
+      // Auto-Heal: Remove any broken symlinks (from local installs) that cause ENOTDIR crashes
+      const fs = require('fs');
+      const path = require('path');
+      const { getPrefix } = require('./environment');
+      const prefix = getPrefix();
+      if (prefix) {
+        const globalDir = path.join(prefix, 'lib', 'node_modules', 'codedock');
+        if (fs.existsSync(globalDir) && fs.lstatSync(globalDir).isSymbolicLink()) {
+          fs.rmSync(globalDir, { recursive: true, force: true });
+        }
+      }
+      
       // Run the update
       execSync('npm install -g MythroniX24/CodeDock', { stdio: 'inherit', shell: true });
       
