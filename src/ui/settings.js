@@ -41,7 +41,6 @@ async function showSettings(config) {
       config.set('logLevel', val);
     }
     
-    config.save();
     console.log(t.success('Settings saved.'));
     await new Promise(resolve => setTimeout(resolve, 800));
   }

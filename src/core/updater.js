@@ -43,7 +43,7 @@ function fetchLatestVersion() {
     
     req.on('error', () => resolve(null));
     req.setTimeout(5000, () => {
-      req.abort();
+      req.destroy();
       resolve(null);
     });
   });
@@ -75,7 +75,6 @@ async function checkAndAutoUpdate() {
     try {
       // Auto-Heal: Remove any broken symlinks (from local installs) that cause ENOTDIR crashes
       const fs = require('fs');
-      const path = require('path');
       const { getPrefix } = require('./environment');
       const prefix = getPrefix();
       if (prefix) {

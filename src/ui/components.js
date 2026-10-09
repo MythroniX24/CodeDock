@@ -1,6 +1,5 @@
 const chalk = require('chalk');
 const inquirer = require('inquirer');
-const Config = require('../core/config');
 const { getTheme } = require('./theme');
 
 // Components
@@ -11,7 +10,7 @@ function banner() {
   
   console.log('');
   console.log(t.border('  ╭──────────────────────────────────────╮'));
-  console.log(t.border('  │') + '  ' + t.secondary.bold('C O D E D O C K') + ' '.repeat(17 - v.length) + t.muted('v' + v) + '   ' + t.border('│'));
+  console.log(t.border('  │') + '  ' + t.secondary.bold('C O D E D O C K') + ' '.repeat(Math.max(0, 17 - v.length)) + t.muted('v' + v) + '   ' + t.border('│'));
   console.log(t.border('  │') + '  ' + t.text('Termux Coding Tools Manager') + ' '.repeat(6) + t.border('│'));
   console.log(t.border('  ╰──────────────────────────────────────╯'));
   console.log('');
@@ -97,7 +96,7 @@ function box(content, width = 40) {
   
   console.log(top);
   lines.forEach(line => {
-    const padLength = width - line.replace(/\u001b\[\d+m/g, '').length;
+    const padLength = width - line.replace(/\x1B\[[0-9;]*[mG]/g, '').length;
     console.log(t.border('│') + line + ' '.repeat(Math.max(0, padLength)) + t.border('│'));
   });
   console.log(bottom);

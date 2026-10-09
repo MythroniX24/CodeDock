@@ -4,7 +4,6 @@
  * @file src/ui/dashboard.js
  * Interactive main dashboard — shown when `codedock` is run with no args.
  */
-const chalk = require('chalk');
 const inquirer = require('inquirer');
 const { banner, selectPrompt, systemInfoBlock } = require('./components');
 const { showSettings } = require('./settings');
@@ -136,7 +135,7 @@ async function manageToolsMenu() {
       const results = [];
       
       // Filter function
-      const filterFn = tool => tool.name.toLowerCase().includes(q) || tool.id.toLowerCase().includes(q) || tool.description.toLowerCase().includes(q);
+      const filterFn = tool => tool.name.toLowerCase().includes(q) || tool.id.toLowerCase().includes(q) || (tool.description || '').toLowerCase().includes(q);
       
       const filteredInstalled = installedTools.filter(filterFn);
       if (filteredInstalled.length > 0) {
