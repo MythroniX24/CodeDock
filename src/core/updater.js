@@ -90,11 +90,9 @@ async function checkAndAutoUpdate(force = false) {
       if (prefix) {
         const globalDir = path.join(prefix, 'lib', 'node_modules', 'codedock');
         try {
-          if (fs.existsSync(globalDir) || fs.lstatSync(globalDir).isSymbolicLink()) {
-            fs.rmSync(globalDir, { recursive: true, force: true });
-          }
+          fs.rmSync(globalDir, { recursive: true, force: true });
         } catch (e) {
-          // Ignore if it doesn't exist
+          // Ignore if it doesn't exist or cannot be removed
         }
       }
       

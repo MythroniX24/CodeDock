@@ -23,8 +23,10 @@ TARBALL=$(npm pack --quiet)
 echo "⚙️  Installing globally..."
 # Universally prevent "ENOTEMPTY", "EPERM", or "ENOTDIR" npm staging bugs
 # by forcefully purging the old directory before installing the new one.
-if [ -n "$PREFIX" ] && [ -d "$PREFIX/lib/node_modules/codedock" ] || [ -L "$PREFIX/lib/node_modules/codedock" ]; then
-    rm -rf "$PREFIX/lib/node_modules/codedock"
+if [ -n "$PREFIX" ]; then
+    if [ -d "$PREFIX/lib/node_modules/codedock" ] || [ -L "$PREFIX/lib/node_modules/codedock" ]; then
+        rm -rf "$PREFIX/lib/node_modules/codedock"
+    fi
 elif [ -d "/usr/local/lib/node_modules/codedock" ] || [ -L "/usr/local/lib/node_modules/codedock" ]; then
     rm -rf "/usr/local/lib/node_modules/codedock"
 fi
