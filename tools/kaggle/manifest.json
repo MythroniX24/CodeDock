@@ -1,0 +1,40 @@
+{
+  "id": "kaggle",
+  "name": "Kaggle CLI",
+  "command": "kaggle",
+  "description": "Kaggle API",
+  "homepage": "https://npmjs.com/package/kaggle",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "pip install kaggle"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "pip uninstall -y kaggle"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "kaggle",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "kaggle",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

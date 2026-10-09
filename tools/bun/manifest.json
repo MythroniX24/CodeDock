@@ -1,0 +1,40 @@
+{
+  "id": "bun",
+  "name": "Bun",
+  "command": "bun",
+  "description": "Fast JS runtime",
+  "homepage": "https://npmjs.com/package/bun",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g bun"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g bun"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "bun",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "bun",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

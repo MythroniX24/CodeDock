@@ -1,0 +1,40 @@
+{
+  "id": "gtop",
+  "name": "gtop",
+  "command": "gtop",
+  "description": "gtop tools",
+  "homepage": "https://npmjs.com/package/gtop",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g gtop"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g gtop"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "gtop",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "gtop",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

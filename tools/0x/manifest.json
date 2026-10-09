@@ -1,0 +1,40 @@
+{
+  "id": "0x",
+  "name": "0x",
+  "command": "0x",
+  "description": "0x tools",
+  "homepage": "https://npmjs.com/package/0x",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g 0x"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g 0x"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "0x",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "0x",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

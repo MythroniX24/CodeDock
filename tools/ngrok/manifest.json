@@ -1,0 +1,40 @@
+{
+  "id": "ngrok",
+  "name": "Ngrok",
+  "command": "ngrok",
+  "description": "Expose localhost",
+  "homepage": "https://npmjs.com/package/ngrok",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g ngrok"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g ngrok"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "ngrok",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "ngrok",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

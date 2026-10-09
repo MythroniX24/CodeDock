@@ -1,0 +1,40 @@
+{
+  "id": "heroku",
+  "name": "Heroku CLI",
+  "command": "heroku",
+  "description": "Heroku app manager",
+  "homepage": "https://npmjs.com/package/heroku",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g heroku"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g heroku"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "heroku",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "heroku",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

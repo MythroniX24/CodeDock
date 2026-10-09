@@ -1,0 +1,40 @@
+{
+  "id": "aws",
+  "name": "AWS CLI",
+  "command": "aws",
+  "description": "Amazon Web Services CLI",
+  "homepage": "https://npmjs.com/package/awscli",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "pip install awscli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "pip uninstall -y awscli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "aws",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "aws",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

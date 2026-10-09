@@ -1,0 +1,40 @@
+{
+  "id": "lint-staged",
+  "name": "lint-staged",
+  "command": "lint-staged",
+  "description": "lint-staged tools",
+  "homepage": "https://npmjs.com/package/lint-staged",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g lint-staged"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g lint-staged"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "lint-staged",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "lint-staged",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

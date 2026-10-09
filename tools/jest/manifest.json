@@ -1,0 +1,40 @@
+{
+  "id": "jest",
+  "name": "jest",
+  "command": "jest",
+  "description": "jest tools",
+  "homepage": "https://npmjs.com/package/jest",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g jest"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g jest"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "jest",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "jest",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

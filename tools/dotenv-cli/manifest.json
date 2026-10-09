@@ -1,0 +1,40 @@
+{
+  "id": "dotenv-cli",
+  "name": "dotenv-cli",
+  "command": "dotenv-cli",
+  "description": "dotenv-cli tools",
+  "homepage": "https://npmjs.com/package/dotenv-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g dotenv-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g dotenv-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "dotenv-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "dotenv-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

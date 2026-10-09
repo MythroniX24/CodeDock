@@ -1,0 +1,40 @@
+{
+  "id": "shx",
+  "name": "shx",
+  "command": "shx",
+  "description": "shx tools",
+  "homepage": "https://npmjs.com/package/shx",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g shx"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g shx"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "shx",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "shx",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

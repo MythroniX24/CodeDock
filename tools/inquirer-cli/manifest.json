@@ -1,0 +1,40 @@
+{
+  "id": "inquirer-cli",
+  "name": "inquirer-cli",
+  "command": "inquirer-cli",
+  "description": "inquirer-cli tools",
+  "homepage": "https://npmjs.com/package/inquirer-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g inquirer-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g inquirer-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "inquirer-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "inquirer-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

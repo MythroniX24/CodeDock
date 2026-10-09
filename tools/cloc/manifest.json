@@ -1,0 +1,40 @@
+{
+  "id": "cloc",
+  "name": "cloc",
+  "command": "cloc",
+  "description": "cloc tools",
+  "homepage": "https://npmjs.com/package/cloc",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g cloc"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g cloc"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "cloc",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "cloc",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "parcel",
+  "name": "parcel",
+  "command": "parcel",
+  "description": "parcel tools",
+  "homepage": "https://npmjs.com/package/parcel",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g parcel"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g parcel"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "parcel",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "parcel",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

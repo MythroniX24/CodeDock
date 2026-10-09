@@ -1,0 +1,40 @@
+{
+  "id": "commitizen",
+  "name": "commitizen",
+  "command": "commitizen",
+  "description": "commitizen tools",
+  "homepage": "https://npmjs.com/package/commitizen",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g commitizen"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g commitizen"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "commitizen",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "commitizen",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

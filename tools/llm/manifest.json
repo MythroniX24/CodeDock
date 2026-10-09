@@ -1,28 +1,21 @@
 {
   "id": "llm",
-  "name": "LLM (Simon Willison)",
+  "name": "LLM",
   "command": "llm",
-  "description": "Access large language models from the command-line",
-  "homepage": "https://github.com/example/llm",
-  "category": "ai-coding-agent",
-  "popular": true,
+  "description": "Simon Willison LLM CLI",
+  "homepage": "https://npmjs.com/package/llm",
+  "category": "cli-tool",
+  "popular": false,
   "installation": {
     "primary": {
-      "method": "npm",
-      "command": "npm install -g llm-mock-package"
+      "method": "shell",
+      "command": "pip install llm"
     }
   },
   "uninstall": {
-    "method": "npm",
-    "command": "npm uninstall -g llm-mock-package"
+    "method": "shell",
+    "command": "pip uninstall -y llm"
   },
-  "dependencies": [
-    {
-      "name": "node",
-      "minVersion": "16.0.0",
-      "required": true
-    }
-  ],
   "architectures": [
     "aarch64",
     "x86_64",

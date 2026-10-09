@@ -1,0 +1,40 @@
+{
+  "id": "cmatrix",
+  "name": "CMatrix",
+  "command": "cmatrix",
+  "description": "Matrix screen",
+  "homepage": "https://npmjs.com/package/cmatrix",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "apt-get install -y cmatrix || pkg install -y cmatrix"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "apt-get remove -y cmatrix || pkg uninstall -y cmatrix"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "cmatrix",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "cmatrix",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

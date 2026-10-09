@@ -1,0 +1,40 @@
+{
+  "id": "nx",
+  "name": "Nx CLI",
+  "command": "nx",
+  "description": "Monorepo manager",
+  "homepage": "https://npmjs.com/package/nx",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g nx"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g nx"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "nx",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "nx",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

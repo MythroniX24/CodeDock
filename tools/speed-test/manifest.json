@@ -1,0 +1,40 @@
+{
+  "id": "speed-test",
+  "name": "speed-test",
+  "command": "speed-test",
+  "description": "speed-test tools",
+  "homepage": "https://npmjs.com/package/speed-test",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g speed-test"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g speed-test"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "speed-test",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "speed-test",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

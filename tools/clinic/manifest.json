@@ -1,0 +1,40 @@
+{
+  "id": "clinic",
+  "name": "clinic",
+  "command": "clinic",
+  "description": "clinic tools",
+  "homepage": "https://npmjs.com/package/clinic",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g clinic"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g clinic"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "clinic",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "clinic",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

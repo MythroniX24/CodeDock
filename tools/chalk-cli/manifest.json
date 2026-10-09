@@ -1,0 +1,40 @@
+{
+  "id": "chalk-cli",
+  "name": "chalk-cli",
+  "command": "chalk-cli",
+  "description": "chalk-cli tools",
+  "homepage": "https://npmjs.com/package/chalk-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g chalk-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g chalk-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "chalk-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "chalk-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

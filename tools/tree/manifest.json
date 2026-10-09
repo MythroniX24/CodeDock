@@ -1,0 +1,40 @@
+{
+  "id": "tree",
+  "name": "Tree",
+  "command": "tree",
+  "description": "Directory tree",
+  "homepage": "https://npmjs.com/package/tree",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "apt-get install -y tree || pkg install -y tree"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "apt-get remove -y tree || pkg uninstall -y tree"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "tree",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "tree",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

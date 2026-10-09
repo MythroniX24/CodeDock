@@ -1,0 +1,40 @@
+{
+  "id": "release-it",
+  "name": "release-it",
+  "command": "release-it",
+  "description": "release-it tools",
+  "homepage": "https://npmjs.com/package/release-it",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g release-it"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g release-it"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "release-it",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "release-it",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

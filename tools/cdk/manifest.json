@@ -1,0 +1,40 @@
+{
+  "id": "cdk",
+  "name": "cdk",
+  "command": "cdk",
+  "description": "cdk tools",
+  "homepage": "https://npmjs.com/package/cdk",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g cdk"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g cdk"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "cdk",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "cdk",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

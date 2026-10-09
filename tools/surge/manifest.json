@@ -1,0 +1,40 @@
+{
+  "id": "surge",
+  "name": "Surge",
+  "command": "surge",
+  "description": "Static web publishing",
+  "homepage": "https://npmjs.com/package/surge",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g surge"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g surge"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "surge",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "surge",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

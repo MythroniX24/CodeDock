@@ -1,0 +1,40 @@
+{
+  "id": "wget",
+  "name": "Wget",
+  "command": "wget",
+  "description": "Download tool",
+  "homepage": "https://npmjs.com/package/wget",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "apt-get install -y wget || pkg install -y wget"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "apt-get remove -y wget || pkg uninstall -y wget"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "wget",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "wget",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

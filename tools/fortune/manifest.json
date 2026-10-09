@@ -1,0 +1,40 @@
+{
+  "id": "fortune",
+  "name": "fortune",
+  "command": "fortune",
+  "description": "fortune tools",
+  "homepage": "https://npmjs.com/package/fortune",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g fortune"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g fortune"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "fortune",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "fortune",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

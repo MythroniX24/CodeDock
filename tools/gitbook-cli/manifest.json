@@ -1,0 +1,40 @@
+{
+  "id": "gitbook-cli",
+  "name": "gitbook-cli",
+  "command": "gitbook-cli",
+  "description": "gitbook-cli tools",
+  "homepage": "https://npmjs.com/package/gitbook-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g gitbook-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g gitbook-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "gitbook-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "gitbook-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

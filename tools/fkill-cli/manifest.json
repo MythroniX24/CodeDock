@@ -1,0 +1,40 @@
+{
+  "id": "fkill-cli",
+  "name": "fkill-cli",
+  "command": "fkill-cli",
+  "description": "fkill-cli tools",
+  "homepage": "https://npmjs.com/package/fkill-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g fkill-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g fkill-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "fkill-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "fkill-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

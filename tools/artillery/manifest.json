@@ -1,0 +1,40 @@
+{
+  "id": "artillery",
+  "name": "artillery",
+  "command": "artillery",
+  "description": "artillery tools",
+  "homepage": "https://npmjs.com/package/artillery",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g artillery"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g artillery"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "artillery",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "artillery",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "npm-check-updates",
+  "name": "npm-check-updates",
+  "command": "npm-check-updates",
+  "description": "npm-check-updates tools",
+  "homepage": "https://npmjs.com/package/npm-check-updates",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g npm-check-updates"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g npm-check-updates"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "npm-check-updates",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "npm-check-updates",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

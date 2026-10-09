@@ -1,0 +1,40 @@
+{
+  "id": "mocha",
+  "name": "mocha",
+  "command": "mocha",
+  "description": "mocha tools",
+  "homepage": "https://npmjs.com/package/mocha",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g mocha"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g mocha"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "mocha",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "mocha",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "supabase",
+  "name": "Supabase CLI",
+  "command": "supabase",
+  "description": "Supabase local dev",
+  "homepage": "https://npmjs.com/package/supabase",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g supabase"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g supabase"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "supabase",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "supabase",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

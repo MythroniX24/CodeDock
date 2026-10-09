@@ -1,0 +1,40 @@
+{
+  "id": "ts-node",
+  "name": "ts-node",
+  "command": "ts-node",
+  "description": "TS execution",
+  "homepage": "https://npmjs.com/package/ts-node",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g ts-node"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g ts-node"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "ts-node",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "ts-node",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

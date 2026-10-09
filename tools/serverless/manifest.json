@@ -1,0 +1,40 @@
+{
+  "id": "serverless",
+  "name": "serverless",
+  "command": "serverless",
+  "description": "serverless tools",
+  "homepage": "https://npmjs.com/package/serverless",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g serverless"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g serverless"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "serverless",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "serverless",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

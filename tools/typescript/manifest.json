@@ -1,0 +1,40 @@
+{
+  "id": "typescript",
+  "name": "TypeScript",
+  "command": "typescript",
+  "description": "TS Compiler",
+  "homepage": "https://npmjs.com/package/typescript",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g typescript"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g typescript"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "typescript",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "typescript",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

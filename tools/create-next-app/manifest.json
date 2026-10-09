@@ -1,0 +1,40 @@
+{
+  "id": "create-next-app",
+  "name": "Create Next App",
+  "command": "create-next-app",
+  "description": "Next.js scaffolding",
+  "homepage": "https://npmjs.com/package/create-next-app",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g create-next-app"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g create-next-app"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "create-next-app",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "create-next-app",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

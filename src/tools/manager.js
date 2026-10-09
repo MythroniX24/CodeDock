@@ -303,6 +303,10 @@ class ToolManager {
 
     const sysInfo = getSystemInfo();
     const isWin = sysInfo.os === 'win32';
+    
+    // Inject API Vault Keys
+    const apiKeys = this.config.getApiKeys();
+    const toolEnv = { ...process.env, ...apiKeys };
 
     if (this._needsProot(tool, sysInfo)) {
       // Build the full command line
@@ -314,7 +318,7 @@ class ToolManager {
       const result = spawnSync(wrapped, [], {
         cwd,
         stdio: 'inherit',
-        env: process.env,
+        env: toolEnv,
         shell: true
       });
 
@@ -325,7 +329,7 @@ class ToolManager {
       const result = spawnSync(command, args, {
         cwd,
         stdio: 'inherit',
-        env: process.env,
+        env: toolEnv,
         shell: isWin
       });
 

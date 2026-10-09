@@ -1,0 +1,40 @@
+{
+  "id": "rollup",
+  "name": "rollup",
+  "command": "rollup",
+  "description": "rollup tools",
+  "homepage": "https://npmjs.com/package/rollup",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g rollup"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g rollup"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "rollup",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "rollup",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "cowsay",
+  "name": "cowsay",
+  "command": "cowsay",
+  "description": "cowsay tools",
+  "homepage": "https://npmjs.com/package/cowsay",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g cowsay"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g cowsay"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "cowsay",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "cowsay",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

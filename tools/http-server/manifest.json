@@ -1,0 +1,40 @@
+{
+  "id": "http-server",
+  "name": "HTTP Server",
+  "command": "http-server",
+  "description": "Simple static server",
+  "homepage": "https://npmjs.com/package/http-server",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g http-server"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g http-server"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "http-server",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "http-server",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "prettier",
+  "name": "Prettier",
+  "command": "prettier",
+  "description": "Code formatter",
+  "homepage": "https://npmjs.com/package/prettier",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g prettier"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g prettier"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "prettier",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "prettier",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

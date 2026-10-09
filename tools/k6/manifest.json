@@ -1,0 +1,40 @@
+{
+  "id": "k6",
+  "name": "k6",
+  "command": "k6",
+  "description": "k6 tools",
+  "homepage": "https://npmjs.com/package/k6",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g k6"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g k6"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "k6",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "k6",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

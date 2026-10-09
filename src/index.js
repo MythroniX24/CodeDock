@@ -12,6 +12,8 @@ const status = require('./commands/status');
 const open = require('./commands/open');
 const projects = require('./commands/projects');
 const help = require('./commands/help');
+const clean = require('./commands/clean');
+const alias = require('./commands/alias');
 
 const pkg = require('../package.json'); // assuming package.json is in root
 
@@ -62,6 +64,12 @@ async function main() {
         break;
       case 'projects':
         await projects(flags);
+        break;
+      case 'clean':
+        await clean(flags);
+        break;
+      case 'alias':
+        await alias(args[0], flags);
         break;
       case '':
         await dashboard.showDashboard();

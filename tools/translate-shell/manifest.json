@@ -1,0 +1,40 @@
+{
+  "id": "translate-shell",
+  "name": "translate-shell",
+  "command": "translate-shell",
+  "description": "translate-shell tools",
+  "homepage": "https://npmjs.com/package/translate-shell",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g translate-shell"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g translate-shell"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "translate-shell",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "translate-shell",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "neofetch",
+  "name": "Neofetch",
+  "command": "neofetch",
+  "description": "System info",
+  "homepage": "https://npmjs.com/package/neofetch",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "apt-get install -y neofetch || pkg install -y neofetch"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "apt-get remove -y neofetch || pkg uninstall -y neofetch"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "neofetch",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "neofetch",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

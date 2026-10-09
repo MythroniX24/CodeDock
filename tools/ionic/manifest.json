@@ -1,0 +1,40 @@
+{
+  "id": "ionic",
+  "name": "ionic",
+  "command": "ionic",
+  "description": "ionic tools",
+  "homepage": "https://npmjs.com/package/ionic",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g ionic"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g ionic"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "ionic",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "ionic",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

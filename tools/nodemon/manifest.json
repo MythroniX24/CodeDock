@@ -1,0 +1,40 @@
+{
+  "id": "nodemon",
+  "name": "Nodemon",
+  "command": "nodemon",
+  "description": "Auto-restart node apps",
+  "homepage": "https://npmjs.com/package/nodemon",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g nodemon"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g nodemon"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "nodemon",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "nodemon",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

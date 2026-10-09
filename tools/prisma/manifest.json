@@ -1,0 +1,40 @@
+{
+  "id": "prisma",
+  "name": "Prisma CLI",
+  "command": "prisma",
+  "description": "ORM CLI",
+  "homepage": "https://npmjs.com/package/prisma",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g prisma"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g prisma"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "prisma",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "prisma",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

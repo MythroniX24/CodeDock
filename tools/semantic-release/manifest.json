@@ -1,0 +1,40 @@
+{
+  "id": "semantic-release",
+  "name": "semantic-release",
+  "command": "semantic-release",
+  "description": "semantic-release tools",
+  "homepage": "https://npmjs.com/package/semantic-release",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g semantic-release"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g semantic-release"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "semantic-release",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "semantic-release",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

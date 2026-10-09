@@ -1,0 +1,40 @@
+{
+  "id": "yarn",
+  "name": "Yarn",
+  "command": "yarn",
+  "description": "Package manager",
+  "homepage": "https://npmjs.com/package/yarn",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g yarn"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g yarn"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "yarn",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "yarn",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

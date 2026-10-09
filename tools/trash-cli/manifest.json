@@ -1,0 +1,40 @@
+{
+  "id": "trash-cli",
+  "name": "trash-cli",
+  "command": "trash-cli",
+  "description": "trash-cli tools",
+  "homepage": "https://npmjs.com/package/trash-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g trash-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g trash-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "trash-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "trash-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

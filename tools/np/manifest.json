@@ -1,0 +1,40 @@
+{
+  "id": "np",
+  "name": "np",
+  "command": "np",
+  "description": "np tools",
+  "homepage": "https://npmjs.com/package/np",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g np"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g np"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "np",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "np",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

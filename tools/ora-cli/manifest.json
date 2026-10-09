@@ -1,0 +1,40 @@
+{
+  "id": "ora-cli",
+  "name": "ora-cli",
+  "command": "ora-cli",
+  "description": "ora-cli tools",
+  "homepage": "https://npmjs.com/package/ora-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g ora-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g ora-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "ora-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "ora-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

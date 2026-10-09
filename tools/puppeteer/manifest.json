@@ -1,0 +1,40 @@
+{
+  "id": "puppeteer",
+  "name": "puppeteer",
+  "command": "puppeteer",
+  "description": "puppeteer tools",
+  "homepage": "https://npmjs.com/package/puppeteer",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g puppeteer"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g puppeteer"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "puppeteer",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "puppeteer",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

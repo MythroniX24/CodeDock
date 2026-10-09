@@ -1,0 +1,40 @@
+{
+  "id": "wifi-password",
+  "name": "wifi-password",
+  "command": "wifi-password",
+  "description": "wifi-password tools",
+  "homepage": "https://npmjs.com/package/wifi-password",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g wifi-password"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g wifi-password"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "wifi-password",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "wifi-password",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

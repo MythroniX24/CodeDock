@@ -1,28 +1,21 @@
 {
   "id": "flyctl",
-  "name": "Fly.io CLI",
+  "name": "Fly.io",
   "command": "flyctl",
-  "description": "Command line tools for fly.io.",
-  "homepage": "https://github.com/example/flyctl",
+  "description": "Fly.io CLI",
+  "homepage": "https://npmjs.com/package/undefined",
   "category": "cli-tool",
   "popular": false,
   "installation": {
     "primary": {
-      "method": "npm",
-      "command": "npm install -g flyctl-mock-package"
+      "method": "shell",
+      "command": "curl -L https://fly.io/install.sh | sh"
     }
   },
   "uninstall": {
-    "method": "npm",
-    "command": "npm uninstall -g flyctl-mock-package"
+    "method": "shell",
+    "command": "echo \"Uninstall manually\""
   },
-  "dependencies": [
-    {
-      "name": "node",
-      "minVersion": "16.0.0",
-      "required": true
-    }
-  ],
   "architectures": [
     "aarch64",
     "x86_64",

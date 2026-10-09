@@ -1,0 +1,40 @@
+{
+  "id": "cross-env",
+  "name": "cross-env",
+  "command": "cross-env",
+  "description": "cross-env tools",
+  "homepage": "https://npmjs.com/package/cross-env",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g cross-env"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g cross-env"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "cross-env",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "cross-env",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

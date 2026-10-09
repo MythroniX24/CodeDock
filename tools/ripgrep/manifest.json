@@ -2,27 +2,20 @@
   "id": "ripgrep",
   "name": "ripgrep",
   "command": "ripgrep",
-  "description": "Line-oriented search tool.",
-  "homepage": "https://github.com/example/ripgrep",
+  "description": "Fast search",
+  "homepage": "https://npmjs.com/package/ripgrep",
   "category": "cli-tool",
-  "popular": true,
+  "popular": false,
   "installation": {
     "primary": {
-      "method": "npm",
-      "command": "npm install -g ripgrep-mock-package"
+      "method": "shell",
+      "command": "apt-get install -y ripgrep || pkg install -y ripgrep"
     }
   },
   "uninstall": {
-    "method": "npm",
-    "command": "npm uninstall -g ripgrep-mock-package"
+    "method": "shell",
+    "command": "apt-get remove -y ripgrep || pkg uninstall -y ripgrep"
   },
-  "dependencies": [
-    {
-      "name": "node",
-      "minVersion": "16.0.0",
-      "required": true
-    }
-  ],
   "architectures": [
     "aarch64",
     "x86_64",

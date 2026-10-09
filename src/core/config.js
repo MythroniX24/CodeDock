@@ -126,6 +126,27 @@ class ConfigManager {
     this._writeJson(TOOLS_STATE_FILE, this.toolsState);
   }
 
+  // ── API Key Vault ───────────────────────────────────────────────────
+  
+  getApiKeys() {
+    return this.get('apiKeys', {});
+  }
+  
+  getApiKey(name) {
+    const keys = this.getApiKeys();
+    return keys[name] || '';
+  }
+  
+  setApiKey(name, value) {
+    const keys = this.getApiKeys();
+    if (value) {
+      keys[name] = value;
+    } else {
+      delete keys[name];
+    }
+    this.set('apiKeys', keys);
+  }
+
   // ── Default project dir ─────────────────────────────────────────────
 
   getDefaultProjectDir() {

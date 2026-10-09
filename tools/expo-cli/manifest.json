@@ -1,0 +1,40 @@
+{
+  "id": "expo-cli",
+  "name": "expo-cli",
+  "command": "expo-cli",
+  "description": "expo-cli tools",
+  "homepage": "https://npmjs.com/package/expo-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g expo-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g expo-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "expo-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "expo-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

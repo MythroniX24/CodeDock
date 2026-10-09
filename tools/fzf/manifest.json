@@ -2,27 +2,20 @@
   "id": "fzf",
   "name": "fzf",
   "command": "fzf",
-  "description": "A command-line fuzzy finder.",
-  "homepage": "https://github.com/example/fzf",
+  "description": "Fuzzy finder",
+  "homepage": "https://npmjs.com/package/fzf",
   "category": "cli-tool",
-  "popular": true,
+  "popular": false,
   "installation": {
     "primary": {
-      "method": "npm",
-      "command": "npm install -g fzf-mock-package"
+      "method": "shell",
+      "command": "apt-get install -y fzf || pkg install -y fzf"
     }
   },
   "uninstall": {
-    "method": "npm",
-    "command": "npm uninstall -g fzf-mock-package"
+    "method": "shell",
+    "command": "apt-get remove -y fzf || pkg uninstall -y fzf"
   },
-  "dependencies": [
-    {
-      "name": "node",
-      "minVersion": "16.0.0",
-      "required": true
-    }
-  ],
   "architectures": [
     "aarch64",
     "x86_64",

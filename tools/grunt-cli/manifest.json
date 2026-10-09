@@ -1,0 +1,40 @@
+{
+  "id": "grunt-cli",
+  "name": "grunt-cli",
+  "command": "grunt-cli",
+  "description": "grunt-cli tools",
+  "homepage": "https://npmjs.com/package/grunt-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g grunt-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g grunt-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "grunt-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "grunt-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

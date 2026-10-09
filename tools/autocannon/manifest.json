@@ -1,0 +1,40 @@
+{
+  "id": "autocannon",
+  "name": "autocannon",
+  "command": "autocannon",
+  "description": "autocannon tools",
+  "homepage": "https://npmjs.com/package/autocannon",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g autocannon"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g autocannon"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "autocannon",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "autocannon",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

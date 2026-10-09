@@ -1,0 +1,40 @@
+{
+  "id": "az",
+  "name": "Azure CLI",
+  "command": "az",
+  "description": "Microsoft Azure CLI",
+  "homepage": "https://npmjs.com/package/azure-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "pip install azure-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "pip uninstall -y azure-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "az",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "az",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

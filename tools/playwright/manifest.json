@@ -1,0 +1,40 @@
+{
+  "id": "playwright",
+  "name": "playwright",
+  "command": "playwright",
+  "description": "playwright tools",
+  "homepage": "https://npmjs.com/package/playwright",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g playwright"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g playwright"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "playwright",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "playwright",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

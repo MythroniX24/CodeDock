@@ -1,0 +1,40 @@
+{
+  "id": "weather-cli",
+  "name": "weather-cli",
+  "command": "weather-cli",
+  "description": "weather-cli tools",
+  "homepage": "https://npmjs.com/package/weather-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g weather-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g weather-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "weather-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "weather-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

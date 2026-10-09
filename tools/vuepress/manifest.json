@@ -1,0 +1,40 @@
+{
+  "id": "vuepress",
+  "name": "vuepress",
+  "command": "vuepress",
+  "description": "vuepress tools",
+  "homepage": "https://npmjs.com/package/vuepress",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g vuepress"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g vuepress"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "vuepress",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "vuepress",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

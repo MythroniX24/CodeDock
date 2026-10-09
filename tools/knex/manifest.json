@@ -1,0 +1,40 @@
+{
+  "id": "knex",
+  "name": "Knex CLI",
+  "command": "knex",
+  "description": "SQL Builder",
+  "homepage": "https://npmjs.com/package/knex",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g knex"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g knex"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "knex",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "knex",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

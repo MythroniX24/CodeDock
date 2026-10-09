@@ -6,12 +6,27 @@ const Config = require('../core/config');
 function banner() {
   const pkg = require('../../package.json');
   const v = pkg.version || '1.0.0';
+  const theme = Config.get('theme', 'default');
+  
+  let primary = chalk.cyan;
+  let secondary = chalk.blue.bold;
+  let text = chalk.white;
+  
+  if (theme === 'hacker') {
+    primary = chalk.green;
+    secondary = chalk.green.bold;
+    text = chalk.green;
+  } else if (theme === 'cyberpunk') {
+    primary = chalk.magenta;
+    secondary = chalk.yellow.bold;
+    text = chalk.cyan;
+  }
   
   console.log('');
-  console.log(chalk.cyan('  ╭────────────────────────────────────╮'));
-  console.log(chalk.cyan('  │') + '  ' + chalk.blue.bold('C O D E D O C K') + ' '.repeat(16 - v.length) + chalk.gray('v' + v) + '  ' + chalk.cyan('│'));
-  console.log(chalk.cyan('  │') + '  ' + chalk.white('Termux Coding Tools Manager') + ' '.repeat(7) + chalk.cyan('│'));
-  console.log(chalk.cyan('  ╰────────────────────────────────────╯'));
+  console.log(primary('  ╭────────────────────────────────────╮'));
+  console.log(primary('  │') + '  ' + secondary('C O D E D O C K') + ' '.repeat(16 - v.length) + chalk.gray('v' + v) + '  ' + primary('│'));
+  console.log(primary('  │') + '  ' + text('Termux Coding Tools Manager') + ' '.repeat(7) + primary('│'));
+  console.log(primary('  ╰────────────────────────────────────╯'));
   console.log('');
 }
 

@@ -2,27 +2,20 @@
   "id": "fabric",
   "name": "Fabric",
   "command": "fabric",
-  "description": "An open-source framework for augmenting humans using AI.",
-  "homepage": "https://github.com/example/fabric",
+  "description": "AI Prompts tool",
+  "homepage": "https://npmjs.com/package/fabric",
   "category": "cli-tool",
-  "popular": true,
+  "popular": false,
   "installation": {
     "primary": {
-      "method": "npm",
-      "command": "npm install -g fabric-mock-package"
+      "method": "shell",
+      "command": "pip install fabric"
     }
   },
   "uninstall": {
-    "method": "npm",
-    "command": "npm uninstall -g fabric-mock-package"
+    "method": "shell",
+    "command": "pip uninstall -y fabric"
   },
-  "dependencies": [
-    {
-      "name": "node",
-      "minVersion": "16.0.0",
-      "required": true
-    }
-  ],
   "architectures": [
     "aarch64",
     "x86_64",

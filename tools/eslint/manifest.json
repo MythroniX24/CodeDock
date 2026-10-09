@@ -1,0 +1,40 @@
+{
+  "id": "eslint",
+  "name": "ESLint",
+  "command": "eslint",
+  "description": "JS Linter",
+  "homepage": "https://npmjs.com/package/eslint",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g eslint"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g eslint"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "eslint",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "eslint",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

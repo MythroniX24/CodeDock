@@ -1,0 +1,40 @@
+{
+  "id": "jupyter",
+  "name": "Jupyter",
+  "command": "jupyter",
+  "description": "Jupyter Notebooks",
+  "homepage": "https://npmjs.com/package/jupyter",
+  "category": "cli-tool",
+  "popular": true,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "pip install jupyter"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "pip uninstall -y jupyter"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "jupyter",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "jupyter",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -2,27 +2,20 @@
   "id": "jq",
   "name": "jq",
   "command": "jq",
-  "description": "Command-line JSON processor.",
-  "homepage": "https://github.com/example/jq",
+  "description": "JSON processor",
+  "homepage": "https://npmjs.com/package/jq",
   "category": "cli-tool",
-  "popular": true,
+  "popular": false,
   "installation": {
     "primary": {
-      "method": "npm",
-      "command": "npm install -g jq-mock-package"
+      "method": "shell",
+      "command": "apt-get install -y jq || pkg install -y jq"
     }
   },
   "uninstall": {
-    "method": "npm",
-    "command": "npm uninstall -g jq-mock-package"
+    "method": "shell",
+    "command": "apt-get remove -y jq || pkg uninstall -y jq"
   },
-  "dependencies": [
-    {
-      "name": "node",
-      "minVersion": "16.0.0",
-      "required": true
-    }
-  ],
   "architectures": [
     "aarch64",
     "x86_64",

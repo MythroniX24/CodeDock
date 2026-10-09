@@ -2,27 +2,20 @@
   "id": "mods",
   "name": "Mods",
   "command": "mods",
-  "description": "AI on the command line, built for pipelines.",
-  "homepage": "https://github.com/example/mods",
+  "description": "AI for pipelines",
+  "homepage": "https://npmjs.com/package/undefined",
   "category": "cli-tool",
-  "popular": true,
+  "popular": false,
   "installation": {
     "primary": {
-      "method": "npm",
-      "command": "npm install -g mods-mock-package"
+      "method": "shell",
+      "command": "go install github.com/charmbracelet/mods@latest"
     }
   },
   "uninstall": {
-    "method": "npm",
-    "command": "npm uninstall -g mods-mock-package"
+    "method": "shell",
+    "command": "echo \"Uninstall manually\""
   },
-  "dependencies": [
-    {
-      "name": "node",
-      "minVersion": "16.0.0",
-      "required": true
-    }
-  ],
   "architectures": [
     "aarch64",
     "x86_64",

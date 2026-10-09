@@ -1,0 +1,40 @@
+{
+  "id": "create-react-app",
+  "name": "Create React App",
+  "command": "create-react-app",
+  "description": "React scaffolding",
+  "homepage": "https://npmjs.com/package/create-react-app",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g create-react-app"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g create-react-app"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "create-react-app",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "create-react-app",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

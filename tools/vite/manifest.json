@@ -1,0 +1,40 @@
+{
+  "id": "vite",
+  "name": "Vite",
+  "command": "vite",
+  "description": "Next gen frontend tooling",
+  "homepage": "https://npmjs.com/package/vite",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g vite"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g vite"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "vite",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "vite",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

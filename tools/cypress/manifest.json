@@ -1,0 +1,40 @@
+{
+  "id": "cypress",
+  "name": "cypress",
+  "command": "cypress",
+  "description": "cypress tools",
+  "homepage": "https://npmjs.com/package/cypress",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g cypress"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g cypress"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "cypress",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "cypress",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

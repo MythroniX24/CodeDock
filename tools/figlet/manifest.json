@@ -1,0 +1,40 @@
+{
+  "id": "figlet",
+  "name": "figlet",
+  "command": "figlet",
+  "description": "figlet tools",
+  "homepage": "https://npmjs.com/package/figlet",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g figlet"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g figlet"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "figlet",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "figlet",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

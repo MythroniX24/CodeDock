@@ -1,0 +1,40 @@
+{
+  "id": "lerna",
+  "name": "Lerna",
+  "command": "lerna",
+  "description": "Monorepo manager",
+  "homepage": "https://npmjs.com/package/lerna",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g lerna"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g lerna"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "lerna",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "lerna",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

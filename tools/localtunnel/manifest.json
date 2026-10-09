@@ -1,0 +1,40 @@
+{
+  "id": "localtunnel",
+  "name": "Localtunnel",
+  "command": "localtunnel",
+  "description": "Expose localhost",
+  "homepage": "https://npmjs.com/package/localtunnel",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g localtunnel"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g localtunnel"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "localtunnel",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "localtunnel",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

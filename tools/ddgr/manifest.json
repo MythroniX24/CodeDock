@@ -1,0 +1,40 @@
+{
+  "id": "ddgr",
+  "name": "ddgr",
+  "command": "ddgr",
+  "description": "ddgr tools",
+  "homepage": "https://npmjs.com/package/ddgr",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g ddgr"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g ddgr"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "ddgr",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "ddgr",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

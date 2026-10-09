@@ -1,0 +1,40 @@
+{
+  "id": "boxen-cli",
+  "name": "boxen-cli",
+  "command": "boxen-cli",
+  "description": "boxen-cli tools",
+  "homepage": "https://npmjs.com/package/boxen-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g boxen-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g boxen-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "boxen-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "boxen-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "vue-cli",
+  "name": "Vue CLI",
+  "command": "vue-cli",
+  "description": "Vue scaffolding",
+  "homepage": "https://npmjs.com/package/@vue/cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g @vue/cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g @vue/cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "vue-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "vue-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

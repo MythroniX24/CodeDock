@@ -1,0 +1,40 @@
+{
+  "id": "docusaurus",
+  "name": "docusaurus",
+  "command": "docusaurus",
+  "description": "docusaurus tools",
+  "homepage": "https://npmjs.com/package/docusaurus",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g docusaurus"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g docusaurus"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "docusaurus",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "docusaurus",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

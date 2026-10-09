@@ -1,0 +1,40 @@
+{
+  "id": "hugo-cli",
+  "name": "hugo-cli",
+  "command": "hugo-cli",
+  "description": "hugo-cli tools",
+  "homepage": "https://npmjs.com/package/hugo-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g hugo-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g hugo-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "hugo-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "hugo-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

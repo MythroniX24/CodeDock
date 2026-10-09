@@ -1,0 +1,40 @@
+{
+  "id": "gulp",
+  "name": "gulp",
+  "command": "gulp",
+  "description": "gulp tools",
+  "homepage": "https://npmjs.com/package/gulp",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g gulp"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g gulp"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "gulp",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "gulp",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

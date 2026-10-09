@@ -2,27 +2,20 @@
   "id": "lazygit",
   "name": "Lazygit",
   "command": "lazygit",
-  "description": "Simple terminal UI for git commands.",
-  "homepage": "https://github.com/example/lazygit",
+  "description": "Git TUI",
+  "homepage": "https://npmjs.com/package/undefined",
   "category": "cli-tool",
-  "popular": true,
+  "popular": false,
   "installation": {
     "primary": {
-      "method": "npm",
-      "command": "npm install -g lazygit-mock-package"
+      "method": "shell",
+      "command": "pkg install lazygit"
     }
   },
   "uninstall": {
-    "method": "npm",
-    "command": "npm uninstall -g lazygit-mock-package"
+    "method": "shell",
+    "command": "echo \"Uninstall manually\""
   },
-  "dependencies": [
-    {
-      "name": "node",
-      "minVersion": "16.0.0",
-      "required": true
-    }
-  ],
   "architectures": [
     "aarch64",
     "x86_64",

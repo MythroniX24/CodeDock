@@ -1,0 +1,40 @@
+{
+  "id": "doctl",
+  "name": "DigitalOcean CLI",
+  "command": "doctl",
+  "description": "CLI for DigitalOcean",
+  "homepage": "https://npmjs.com/package/doctl",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g doctl"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g doctl"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "doctl",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "doctl",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

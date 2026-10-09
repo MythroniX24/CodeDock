@@ -1,0 +1,40 @@
+{
+  "id": "react-native-cli",
+  "name": "react-native-cli",
+  "command": "react-native-cli",
+  "description": "react-native-cli tools",
+  "homepage": "https://npmjs.com/package/react-native-cli",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g react-native-cli"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g react-native-cli"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "react-native-cli",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "react-native-cli",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

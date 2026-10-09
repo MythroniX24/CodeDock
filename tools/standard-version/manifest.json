@@ -1,0 +1,40 @@
+{
+  "id": "standard-version",
+  "name": "standard-version",
+  "command": "standard-version",
+  "description": "standard-version tools",
+  "homepage": "https://npmjs.com/package/standard-version",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g standard-version"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g standard-version"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "standard-version",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "standard-version",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}

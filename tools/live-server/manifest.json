@@ -1,0 +1,40 @@
+{
+  "id": "live-server",
+  "name": "Live Server",
+  "command": "live-server",
+  "description": "Server with live reload",
+  "homepage": "https://npmjs.com/package/live-server",
+  "category": "cli-tool",
+  "popular": false,
+  "installation": {
+    "primary": {
+      "method": "shell",
+      "command": "npm install -g live-server"
+    }
+  },
+  "uninstall": {
+    "method": "shell",
+    "command": "npm uninstall -g live-server"
+  },
+  "architectures": [
+    "aarch64",
+    "x86_64",
+    "armv7l",
+    "i686"
+  ],
+  "compatibility": {
+    "termux": true
+  },
+  "verification": {
+    "command": "live-server",
+    "args": [
+      "--version"
+    ]
+  },
+  "launcher": {
+    "command": "live-server",
+    "args": [],
+    "interactive": true,
+    "inheritStdio": true
+  }
+}
