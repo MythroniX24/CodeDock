@@ -83,17 +83,18 @@ async function checkAndAutoUpdate(force = false) {
     logger.info('Auto-updating CodeDock from GitHub...');
     
     try {
-      // Auto-Heal: Remove any broken symlinks (from local installs) that cause ENOTDIR crashes
+      // Auto-Heal: Completely remove the old installation directory before upgrading.
+      // This universally prevents npm's infamous "ENOTEMPTY", "ENOTDIR", and "EPERM" staging rename bugs.
       const { getPrefix } = require('./environment');
       const prefix = getPrefix();
       if (prefix) {
         const globalDir = path.join(prefix, 'lib', 'node_modules', 'codedock');
         try {
-          if (fs.lstatSync(globalDir).isSymbolicLink()) {
+          if (fs.existsSync(globalDir) || fs.lstatSync(globalDir).isSymbolicLink()) {
             fs.rmSync(globalDir, { recursive: true, force: true });
           }
         } catch (e) {
-          // ignore if it doesn't exist
+          // Ignore if it doesn't exist
         }
       }
       

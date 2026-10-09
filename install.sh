@@ -21,7 +21,14 @@ echo "📦 Packing CodeDock..."
 TARBALL=$(npm pack --quiet)
 
 echo "⚙️  Installing globally..."
-# Remove any existing broken installation
+# Universally prevent "ENOTEMPTY", "EPERM", or "ENOTDIR" npm staging bugs
+# by forcefully purging the old directory before installing the new one.
+if [ -n "$PREFIX" ] && [ -d "$PREFIX/lib/node_modules/codedock" ] || [ -L "$PREFIX/lib/node_modules/codedock" ]; then
+    rm -rf "$PREFIX/lib/node_modules/codedock"
+elif [ -d "/usr/local/lib/node_modules/codedock" ] || [ -L "/usr/local/lib/node_modules/codedock" ]; then
+    rm -rf "/usr/local/lib/node_modules/codedock"
+fi
+
 npm uninstall -g codedock > /dev/null 2>&1 || true
 
 # Install from the tarball
