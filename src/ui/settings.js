@@ -57,7 +57,15 @@ async function manageApiKeys(config) {
     
     const choices = keyNames.map(k => {
       const val = keys[k];
-      const masked = val.length <= 8 ? '***' : `${val.substring(0, 4)}...${val.substring(val.length - 4)}`;
+      let masked = '***';
+      if (val && val.length > 8) {
+        masked = `${val.substring(0, 4)}...${val.substring(val.length - 4)}`;
+      } else if (val) {
+        masked = '***';
+      } else {
+        masked = '(Not Set)';
+      }
+      
       return {
         name: `✏️  Edit ${k} (Current: ${masked})`,
         value: k

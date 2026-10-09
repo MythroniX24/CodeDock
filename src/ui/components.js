@@ -61,14 +61,19 @@ async function inputPrompt(message, defaultVal = '') {
   return input;
 }
 
-// Ensure autocomplete is registered
+let autocompleteRegistered = false;
 try {
   inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
+  autocompleteRegistered = true;
 } catch (e) {
   // Graceful degradation if plugin fails
 }
 
-async function autocompletePrompt(message, source) {
+async function autocompletePrompt(message, source, rawChoices = []) {
+  if (!autocompleteRegistered) {
+    return selectPrompt(message, rawChoices.length ? rawChoices : await source(null, ''));
+  }
+  
   const { selection } = await inquirer.prompt([{
     type: 'autocomplete',
     name: 'selection',

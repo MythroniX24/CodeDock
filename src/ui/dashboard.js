@@ -129,12 +129,10 @@ async function manageToolsMenu() {
   // Sort alphabetically
   allToolsRaw.sort((a, b) => a.name.localeCompare(b.name));
   
-  // Determine tool status
-  const tools = [];
-  for (const tool of allToolsRaw) {
+  const tools = await Promise.all(allToolsRaw.map(async (tool) => {
     const installed = await toolManager.isToolInstalled(tool.id);
-    tools.push({ ...tool, installed });
-  }
+    return { ...tool, installed };
+  }));
   
   const installedTools = tools.filter(tool => tool.installed);
   const popularTools = tools.filter(tool => !tool.installed && tool.popular);
@@ -177,7 +175,8 @@ async function manageToolsMenu() {
     });
   };
 
-  const selectedToolId = await autocompletePrompt(t.text('Search or select a tool to manage:'), searchTools);
+  const rawChoices = await searchTools(null, '');
+  const selectedToolId = await autocompletePrompt(t.text('Search or select a tool to manage:'), searchTools, rawChoices);
   if (selectedToolId === 'back') return;
 
   const installed = await toolManager.isToolInstalled(selectedToolId);

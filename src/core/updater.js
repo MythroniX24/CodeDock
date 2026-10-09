@@ -68,8 +68,13 @@ async function checkAndAutoUpdate(force = false) {
   
   // Read package.json dynamically to avoid module cache when upgrading twice in one session
   const pkgPath = path.join(__dirname, '..', '..', 'package.json');
-  const localPkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
-  const localVersion = localPkg.version;
+  let localVersion = '1.0.0';
+  try {
+    const localPkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+    localVersion = localPkg.version || '1.0.0';
+  } catch (e) {
+    // Failsafe if package.json is missing or corrupted
+  }
   
   // We'll quickly check in the background/inline
   const remoteVersion = await fetchLatestVersion(force);
@@ -84,16 +89,18 @@ async function checkAndAutoUpdate(force = false) {
     
     try {
       const os = require('os');
+      const crypto = require('crypto');
       const { spawn } = require('child_process');
       const { getPrefix } = require('./environment');
       
       const tmpDir = os.tmpdir();
-      const scriptPath = path.join(tmpDir, 'codedock_updater.sh');
+      const randomId = crypto.randomBytes(4).toString('hex');
+      const scriptPath = path.join(tmpDir, `codedock_updater_${randomId}.sh`);
+      const logPath = path.join(tmpDir, `codedock_update_${randomId}.log`);
       const prefix = getPrefix() || '/usr/local';
       
       const scriptContent = `#!/bin/bash
-echo "Waiting for CodeDock to close..."
-sleep 2
+sleep 1
 
 echo "🧹 Cleaning up old installation..."
 rm -rf "${prefix}/lib/node_modules/codedock"
@@ -101,18 +108,20 @@ rm -rf "${prefix}/lib/node_modules/codedock"
 echo "🚀 Installing latest CodeDock from GitHub..."
 npm install -g MythroniX24/CodeDock
 
-echo "✨ Update complete! Launching CodeDock..."
-codedock
+rm -- "$0"
 `;
       
       fs.writeFileSync(scriptPath, scriptContent, { mode: 0o755 });
       
-      logger.info('Restarting CodeDock to apply updates in a detached process...\n');
+      logger.info(`⏳ Auto-updater running in background (Logs: ${logPath})...`);
+      logger.info('✨ Update will complete in a few seconds. Type `codedock` again shortly.');
       
       // Spawn the script completely detached
+      const out = fs.openSync(logPath, 'a');
+      const err = fs.openSync(logPath, 'a');
       const child = spawn('bash', [scriptPath], {
         detached: true,
-        stdio: 'inherit'
+        stdio: ['ignore', out, err]
       });
       
       child.unref();
