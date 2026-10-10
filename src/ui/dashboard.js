@@ -53,7 +53,8 @@ async function showDashboard() {
       console.log(t.border('  │ ') + t.muted('No tools installed yet. Go to Manage Tools'.padEnd(40)) + t.border('│'));
     } else {
       for (const tool of installedTools) {
-        console.log(t.border('  │ ') + t.success('✓ ') + t.text(tool.name.padEnd(38)) + t.border('│'));
+        const safeName = String(tool.name).substring(0, 38).padEnd(38);
+        console.log(t.border('  │ ') + t.success('✓ ') + t.text(safeName) + t.border('│'));
       }
     }
     console.log(t.border('  ╰──────────────────────────────────────────╯'));
@@ -226,8 +227,10 @@ async function showDependencies() {
   const allDeps = depManager.getAll();
   for (const [name, info] of Object.entries(allDeps)) {
     const mark = info.installed ? t.success('✓ ') : t.error('✗ ');
+    const safeName = String(name).substring(0, 21).padEnd(21);
     const ver = info.version ? `v${info.version}` : '';
-    const line = mark + t.text(name.padEnd(21)) + t.muted(ver.padEnd(18));
+    const safeVer = String(ver).substring(0, 18).padEnd(18);
+    const line = mark + t.text(safeName) + t.muted(safeVer);
     console.log(t.border('  │ ') + line + t.border('│'));
   }
   console.log(t.border('  ╰──────────────────────────────────────────╯'));

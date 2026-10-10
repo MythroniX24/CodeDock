@@ -7,26 +7,34 @@ function banner() {
   const pkg = require('../../package.json');
   const v = pkg.version || '1.0.0';
   const t = getTheme();
+  const safeV = v.substring(0, 10);
   
   console.log('');
   console.log(t.border('  ╭──────────────────────────────────────────╮'));
-  console.log(t.border('  │') + '  ' + t.secondary.bold('C O D E D O C K') + ' '.repeat(Math.max(0, 21 - v.length)) + t.muted('v' + v) + '  ' + t.border('│'));
+  console.log(t.border('  │') + '  ' + t.secondary.bold('C O D E D O C K') + ' '.repeat(Math.max(0, 21 - safeV.length)) + t.muted('v' + safeV) + '  ' + t.border('│'));
   console.log(t.border('  │') + '  ' + t.text('Termux Coding Tools Manager') + ' '.repeat(12) + t.border('│'));
   console.log(t.border('  ╰──────────────────────────────────────────╯'));
 }
 
 function toolStatusLine(tool, isInstalled) {
   const t = getTheme();
-  const status = isInstalled ? t.success('[Installed]') : t.muted('[Available]');
-  return `${status.padEnd(20)} ${t.text(tool.name)}`;
+  const label = isInstalled ? '[Installed]' : '[Available]';
+  const paddedLabel = label.padEnd(20);
+  const status = isInstalled ? t.success(paddedLabel) : t.muted(paddedLabel);
+  return `${status} ${t.text(tool.name)}`;
 }
 
 async function systemInfoBlock(envInfo) {
   const t = getTheme();
   
+  const osStr = String(envInfo.os || 'Unknown').substring(0, 11).padEnd(11);
+  const archStr = String(envInfo.arch || 'Unknown').substring(0, 15).padEnd(15);
+  const termuxStr = (envInfo.isTermux ? 'Yes' : 'No').padEnd(11);
+  const pkgStr = String(envInfo.packageManager || 'npm').substring(0, 15).padEnd(15);
+  
   console.log(t.border('  ╭─') + t.secondary(' System Info ') + t.border('────────────────────────────╮'));
-  console.log(t.border('  │ ') + t.text('OS:     ') + t.primary(envInfo.os.padEnd(11)) + t.text(' Arch: ') + t.primary(envInfo.arch.padEnd(15)) + t.border('│'));
-  console.log(t.border('  │ ') + t.text('Termux: ') + (envInfo.isTermux ? t.success('Yes'.padEnd(11)) : t.error('No '.padEnd(11))) + t.text(' Pkg:  ') + t.primary((envInfo.packageManager || 'npm').padEnd(15)) + t.border('│'));
+  console.log(t.border('  │ ') + t.text('OS:     ') + t.primary(osStr) + t.text(' Arch: ') + t.primary(archStr) + t.border('│'));
+  console.log(t.border('  │ ') + t.text('Termux: ') + (envInfo.isTermux ? t.success(termuxStr) : t.error(termuxStr)) + t.text(' Pkg:  ') + t.primary(pkgStr) + t.border('│'));
   console.log(t.border('  ╰──────────────────────────────────────────╯\n'));
 }
 
