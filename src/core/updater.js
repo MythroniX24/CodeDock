@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const https = require('https');
-const { execSync } = require('child_process');
 const path = require('path');
 const logger = require('./logger');
 const config = require('./config');
