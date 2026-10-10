@@ -11,8 +11,8 @@ function banner() {
   
   console.log('');
   console.log(t.border('  ╭──────────────────────────────────────────╮'));
-  console.log(t.border('  │') + '  ' + t.secondary.bold('C O D E D O C K') + ' '.repeat(Math.max(0, 21 - safeV.length)) + t.muted('v' + safeV) + '  ' + t.border('│'));
-  console.log(t.border('  │') + '  ' + t.text('Termux Coding Tools Manager') + ' '.repeat(12) + t.border('│'));
+  console.log(t.border('  │') + '  ' + t.secondary.bold('C O D E D O C K') + ' '.repeat(Math.max(0, 22 - safeV.length)) + t.muted('v' + safeV) + '  ' + t.border('│'));
+  console.log(t.border('  │') + '  ' + t.text('Termux Coding Tools Manager') + ' '.repeat(13) + t.border('│'));
   console.log(t.border('  ╰──────────────────────────────────────────╯'));
 }
 

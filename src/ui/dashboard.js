@@ -46,14 +46,14 @@ async function showDashboard() {
     }
 
     const headerText = ` Installed Tools (${installedTools.length}) `;
-    const dashCount = Math.max(0, 42 - headerText.length);
+    const dashCount = Math.max(0, 41 - headerText.length);
     console.log(t.border('  ╭─') + t.secondary.bold(headerText) + t.border('─'.repeat(dashCount) + '╮'));
     
     if (installedTools.length === 0) {
-      console.log(t.border('  │ ') + t.muted('No tools installed yet. Go to Manage Tools'.padEnd(40)) + t.border('│'));
+      console.log(t.border('  │ ') + t.muted('No tools installed yet. Go to Manage Tools'.padEnd(41)) + t.border('│'));
     } else {
       for (const tool of installedTools) {
-        const safeName = String(tool.name).substring(0, 38).padEnd(38);
+        const safeName = String(tool.name).substring(0, 39).padEnd(39);
         console.log(t.border('  │ ') + t.success('✓ ') + t.text(safeName) + t.border('│'));
       }
     }
