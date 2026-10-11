@@ -5,7 +5,10 @@ const ProjectManager = require('../projects/manager');
 const { selectProject } = require('../ui/projectSelector');
 const logger = require('../core/logger');
 
-async function open(toolId, flags) {
+const fs = require('fs');
+const path = require('path');
+
+async function open(toolId, flags, targetPath) {
   if (!toolId) {
     logger.error('Please specify a tool ID to open.');
     return;
@@ -25,14 +28,27 @@ async function open(toolId, flags) {
   }
 
   const projectManager = new ProjectManager();
-  const projectPath = await selectProject(projectManager, tool.name);
+  let projectPath = targetPath;
+  
+  if (projectPath) {
+    let resolved = projectManager.resolveProjectPath(projectPath);
+
+    if (!resolved || !fs.existsSync(resolved)) {
+      logger.error(`Directory '${projectPath}' does not exist.`);
+      return;
+    }
+
+    projectPath = resolved;
+    projectManager.addProject(projectPath);
+  } else {
+    projectPath = await selectProject(projectManager, tool.name);
+  }
   
   if (!projectPath) {
     logger.info('Cancelled.');
     return;
   }
 
-  logger.info(`Launching ${tool.name} in ${projectPath}...`);
   try {
     await toolManager.launchTool(toolId, projectPath);
   } catch (error) {

@@ -24,15 +24,15 @@ class ProotManager {
     if (!this.isProotDistroInstalled()) return false;
     try {
       const output = execSync('proot-distro list', { encoding: 'utf8' });
-      // Output contains something like "ubuntu (installed)"
-      return output.includes(`* ${this.distro}`) || output.includes(`${this.distro} (installed)`) || execSync(`proot-distro login ${this.distro} -- echo "ok"`, { stdio: 'ignore' }) === undefined;
-    } catch (_) {
-      try {
-        execSync(`proot-distro login ${this.distro} -- echo "ok"`, { stdio: 'ignore' });
+      if (output.includes(`* ${this.distro}`) || output.includes(`${this.distro} (installed)`)) {
         return true;
-      } catch (e) {
-        return false;
       }
+    } catch (_) {}
+    try {
+      execSync(`proot-distro login ${this.distro} -- echo "ok"`, { stdio: 'ignore' });
+      return true;
+    } catch (_) {
+      return false;
     }
   }
 
@@ -66,18 +66,20 @@ class ProotManager {
   /**
    * Wrap a command to run inside the proot subsystem.
    * @param {string} command 
-   * @param {object} options 
+   * @param {string} [cwd] Target working directory inside the subsystem
    * @returns {string} The wrapped command
    */
-  wrapCommand(command) {
+  wrapCommand(command, cwd = null) {
     // Escape single quotes for bash -c
     const escapedCmd = command.replace(/'/g, "'\\''");
-    // Bind current directory so project files are accessible
-    return `proot-distro login ${this.distro} --bind "$PWD" -- bash -c '${escapedCmd}'`;
+    const safeWorkDir = cwd ? `'${cwd.replace(/'/g, "'\\''")}'` : null;
+    const workDirArgs = safeWorkDir ? `--work-dir ${safeWorkDir} --bind ${safeWorkDir}` : '--bind "$PWD"';
+    return `proot-distro login ${this.distro} ${workDirArgs} -- bash -c '${escapedCmd}'`;
   }
 
   runInSubsystem(command, options = {}) {
-    const wrapped = this.wrapCommand(command);
+    const cwd = options.cwd || process.cwd();
+    const wrapped = this.wrapCommand(command, cwd);
     return execSync(wrapped, options);
   }
 }

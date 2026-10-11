@@ -1,3 +1,5 @@
+'use strict';
+
 const { parse } = require('./cli/parser');
 const logger = require('./core/logger');
 const dashboard = require('./ui/dashboard');
@@ -61,7 +63,7 @@ async function main() {
         await status(flags);
         break;
       case 'open':
-        await open(args[0], flags);
+        await open(args[0], flags, args[1]);
         break;
       case 'projects':
         await projects(flags);

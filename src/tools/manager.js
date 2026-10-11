@@ -6,6 +6,8 @@
  * removal, verification, and launching.
  */
 const { spawnSync, execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
 const registry = require('./registry');
 const {
   getInstallCommand,
@@ -297,45 +299,67 @@ class ToolManager {
     let args = getLaunchArgs(tool);
     if (!command) throw new Error(`No launch command for tool: ${id}`);
 
-    const cwd = projectDir || process.cwd();
+    const cwd = path.resolve(projectDir || process.cwd());
+    
+    if (!fs.existsSync(cwd)) {
+      throw new Error(`Directory does not exist: ${cwd}`);
+    }
+
     logger.info(`Launching ${tool.name} in ${cwd}...`);
     logger.blank();
 
     const sysInfo = getSystemInfo();
     const isWin = sysInfo.os === 'win32';
     
-    // Inject API Vault Keys
+    // Inject API Vault Keys and set PWD
     const apiKeys = this.config.getApiKeys();
-    const toolEnv = { ...process.env, ...apiKeys };
+    const toolEnv = { ...process.env, ...apiKeys, PWD: cwd };
 
-    if (this._needsProot(tool, sysInfo)) {
-      // Build the full command line
-      const fullArgs = args.map(a => `"${a}"`).join(' ');
-      const fullCmd = `${command} ${fullArgs}`.trim();
-      
-      const wrapped = proot.wrapCommand(`cd "$PWD" && ${fullCmd}`);
-      
-      const result = spawnSync(wrapped, [], {
-        cwd,
-        stdio: 'inherit',
-        env: toolEnv,
-        shell: true
-      });
+    const originalCwd = process.cwd();
+    try {
+      process.chdir(cwd);
+    } catch (_) {}
 
-      if (result.error) {
-        throw new Error(`Failed to launch ${tool.name}: ${result.error.message}`);
+    try {
+      if (this._needsProot(tool, sysInfo)) {
+        // Build the full command line with POSIX single-quote escaping for each arg
+        const fullArgs = args.map(a => `'${String(a).replace(/'/g, "'\\''")}'`).join(' ');
+        const fullCmd = `${command} ${fullArgs}`.trim();
+        
+        // Export API keys inside proot subsystem since proot-distro scrubs host environment
+        const envExports = Object.entries(apiKeys)
+          .map(([k, v]) => `export ${k}='${String(v).replace(/'/g, "'\\''")}'`)
+          .join(' && ');
+        const cmdWithEnv = envExports ? `${envExports} && ${fullCmd}` : fullCmd;
+        
+        const wrapped = proot.wrapCommand(cmdWithEnv, cwd);
+        
+        const result = spawnSync(wrapped, [], {
+          cwd,
+          stdio: 'inherit',
+          env: toolEnv,
+          shell: true
+        });
+
+        if (result.error) {
+          throw new Error(`Failed to launch ${tool.name}: ${result.error.message}`);
+        }
+      } else {
+        const result = spawnSync(command, args, {
+          cwd,
+          stdio: 'inherit',
+          env: toolEnv,
+          shell: isWin
+        });
+
+        if (result.error) {
+          throw new Error(`Failed to launch ${tool.name}: ${result.error.message}`);
+        }
       }
-    } else {
-      const result = spawnSync(command, args, {
-        cwd,
-        stdio: 'inherit',
-        env: toolEnv,
-        shell: isWin
-      });
-
-      if (result.error) {
-        throw new Error(`Failed to launch ${tool.name}: ${result.error.message}`);
-      }
+    } finally {
+      try {
+        process.chdir(originalCwd);
+      } catch (_) {}
     }
   }
 

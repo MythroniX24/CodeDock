@@ -5,9 +5,13 @@ const ToolManager = require('../tools/manager');
 const { selectPrompt } = require('../ui/components');
 const chalk = require('chalk');
 
+const inquirer = require('inquirer');
+const fs = require('fs');
+const logger = require('../core/logger');
+
 async function projects(flags) {
   const projectManager = new ProjectManager();
-  const recent = projectManager.getRecentProjects();
+  const recent = projectManager.getRecentProjects().filter(p => fs.existsSync(p));
   
   if (recent.length === 0) {
     console.log(chalk.yellow('No recent projects found.'));
@@ -20,7 +24,7 @@ async function projects(flags) {
     value: p
   }));
   
-  choices.push(new (require('inquirer')).Separator());
+  choices.push(new inquirer.Separator());
   choices.push({ name: 'Exit', value: 'exit' });
   
   const selected = await selectPrompt('Recent Projects:', choices);
@@ -38,20 +42,24 @@ async function projects(flags) {
       }
     }
 
-    if (installedTools.length === 1) {
-      const tool = installedTools[0];
-      console.log(`Launching ${tool.name}...`);
-      await toolManager.launchTool(tool.id, selected);
-    } else if (installedTools.length > 1) {
-      const toolChoices = installedTools.map(t => ({ name: t.name, value: t.id }));
-      toolChoices.push({ name: 'Cancel', value: 'cancel' });
-      const chosenTool = await selectPrompt('Select tool to open this project:', toolChoices);
-      if (chosenTool !== 'cancel') {
-        console.log(`Launching...`);
-        await toolManager.launchTool(chosenTool, selected);
+    try {
+      if (installedTools.length === 1) {
+        const tool = installedTools[0];
+        projectManager.addProject(selected);
+        await toolManager.launchTool(tool.id, selected);
+      } else if (installedTools.length > 1) {
+        const toolChoices = installedTools.map(t => ({ name: t.name, value: t.id }));
+        toolChoices.push({ name: 'Cancel', value: 'cancel' });
+        const chosenTool = await selectPrompt('Select tool to open this project:', toolChoices);
+        if (chosenTool && chosenTool !== 'cancel') {
+          projectManager.addProject(selected);
+          await toolManager.launchTool(chosenTool, selected);
+        }
+      } else {
+        console.log(chalk.yellow('No tools installed to open this project.'));
       }
-    } else {
-      console.log(chalk.yellow('No tools installed to open this project.'));
+    } catch (error) {
+      logger.error(`Failed to launch tool: ${error.message}`);
     }
   }
 }

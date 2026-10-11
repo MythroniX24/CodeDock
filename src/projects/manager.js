@@ -108,6 +108,39 @@ class ProjectManager {
   }
 
   /**
+   * Resolve an input string into a valid project directory path.
+   * Handles ~, relative paths, default projects directory fallback, and converts files to directory.
+   * @param {string} input
+   * @returns {string|null}
+   */
+  resolveProjectPath(input) {
+    if (!input || !input.trim()) return null;
+    const trimmed = input.trim();
+    let resolved = this.resolveHome(trimmed);
+
+    // If path doesn't exist directly and isn't absolute or starting with ~, check default projects directory
+    if (!fs.existsSync(resolved) && !path.isAbsolute(trimmed) && !trimmed.startsWith('~')) {
+      const defaultDir = this.resolveHome(this.getDefaultDir());
+      const inDefault = path.join(defaultDir, trimmed);
+      if (fs.existsSync(inDefault)) {
+        resolved = inDefault;
+      }
+    }
+
+    // If it points to an existing file, get its directory
+    if (fs.existsSync(resolved)) {
+      try {
+        const stat = fs.statSync(resolved);
+        if (!stat.isDirectory()) {
+          resolved = path.dirname(resolved);
+        }
+      } catch (_) {}
+    }
+
+    return resolved;
+  }
+
+  /**
    * Check if a directory exists.
    * @param {string} dirPath
    * @returns {boolean}

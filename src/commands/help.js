@@ -15,7 +15,7 @@ ${chalk.bold('COMMANDS')}
   ${chalk.green('list')}             List all available and installed tools
   ${chalk.green('status')}           Show system and environment status
   ${chalk.green('doctor')}           Run comprehensive system diagnostics
-  ${chalk.green('open')} <tool>      Open a project with a specific tool
+  ${chalk.green('open')} <tool> [path] Open a project with a specific tool
   ${chalk.green('projects')}         Manage recent projects
   ${chalk.green('help')}             Show this help message
 
